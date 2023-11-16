@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MediaWatch</string>
+    <string name="company_name">Farsight Media Watch</string>
+    <string name="welcome">Welcome</string>
+    <string name="verifyEmail">Enter Email To Verify</string>
+    <string name="Login">Log In</string>
+<!--    <string name="Login">Log In</string>-->
+    <string name="Sign_up">Sign Up</string>
+    <string name="Send_otp">Send Otp</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="forgot_Password">Forgot Password</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="login_details">Enter Email And Password To Log In</string>
+    <string name="sign_up_details">Enter Sign Up Details</string>
+
+    <string name="enter_otp">Enter otp sent to your email</string>
+
+
+    <string name="otp_message">We will send an otp to this email</string>
+
+    <string name="title_activity_verify_email">VerifyEmail</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_verify">Verify</string>
+
+
+</resources>
