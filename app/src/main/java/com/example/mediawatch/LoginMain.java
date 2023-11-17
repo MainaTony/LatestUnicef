@@ -32,7 +32,7 @@ public class LoginMain extends AppCompatActivity {
     String field1 = "admin";
     String field2 = "admin123";
     private EditText password;
-    String url = "http://192.168.100.111:8080/portal/auth/authenticate";
+    String url = "http://192.168.137.1:8080/portal/auth/authenticate";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

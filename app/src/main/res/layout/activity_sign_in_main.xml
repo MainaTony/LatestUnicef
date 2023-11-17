@@ -79,14 +79,14 @@
             android:textSize="20sp"
             android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/editTextTextPassword2"
-            android:layout_height="wrap_content"
-            android:layout_width="280dp"
-            android:textSize="20sp"
-            android:layout_marginBottom="70sp"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword" />
+<!--        <EditText-->
+<!--            android:id="@+id/editTextTextPassword2"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="280dp"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginBottom="70sp"-->
+<!--            android:hint="@string/confirm_password"-->
+<!--            android:inputType="textPassword" />-->
 
 
         <Button
