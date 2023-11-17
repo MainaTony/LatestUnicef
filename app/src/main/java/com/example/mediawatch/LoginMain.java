@@ -69,53 +69,6 @@ public class LoginMain extends AppCompatActivity {
         });
     }
 
-//    private void login(){
-//        String urlMain = "http://your-backend-url/api/login";
-//        String url = "http://192.168.100.111:8080/portal/auth/authenticate";
-//
-//        StringRequest request = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Log.e("LoginActivity", "Error: " );
-//                        // Handle successful login response
-//                        Toast.makeText(LoginMain.this, response, Toast.LENGTH_SHORT).show();
-////                        Toast.makeText(LoginMain.this, "Communication To The Backend a success"+"", Toast.LENGTH_SHORT).show();
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        // Handle error response
-//                        Log.e("LoginActivity", "Error: " + error.getMessage());
-//                        Toast.makeText(LoginMain.this, "Login failed", Toast.LENGTH_SHORT).show();
-//                    }
-//                }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                // Set POST parameters for the login request
-//                Map<String, String> params = new HashMap<>();
-////                params.put("username", email.getText().toString());
-//                params.put("username", field1);
-////                params.put("password", password.getText().toString());
-//                Log.e("Username", "Error: " + field1);
-//                params.put("password", field2);
-//                Log.e("Password", "Error: " + field2);
-//                return params;
-//            }
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String,String> params = new HashMap<String, String>();
-//                params.put("Content-Type","application/json");
-////                Log.e("Params", +params);
-//                return params;
-//            }
-//        };
-//
-//        // Add the request to the Volley request queue
-//        Volley.newRequestQueue(this).add(request);
-//    }
-
     public void makeJsonRequest(String url, final JSONObject params) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);

@@ -23,23 +23,10 @@
             android:layout_height="wrap_content"
             android:text="@string/verify_otp"
             android:textStyle="bold"
-            android:textSize="40sp"/>
+            android:textSize="40sp"
+            android:layout_marginTop="100sp"/>
 
-        <EditText
-            android:id="@+id/editTextNumberPassword"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_otp"
-            android:textSize="20sp"
-            android:layout_width="280dp"
-            android:inputType="numberPassword"/>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/resend_otp"
-            android:textSize="20sp"
-            />
 
     </LinearLayout>
 
@@ -47,20 +34,41 @@
         android:id="@+id/bottomLayoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="@drawable/union"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verifyOtpMainLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
+
+        <EditText
+            android:id="@+id/editTextNumberPassword"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_otp"
+            android:textSize="20sp"
+            android:layout_width="280dp"
+            android:layout_gravity="center"
+            android:inputType="numberPassword"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/resend_otp"
+            android:layout_marginBottom="200sp"
+            android:textSize="15sp"
+            />
 
         <Button
             android:id="@+id/verifyOtpButton"
             android:layout_height="wrap_content"
             android:text="@string/verify_otp"
             android:textSize="20sp"
-            app:backgroundTint="@color/brand_color"
-            android:layout_width="280dp"
+            android:layout_gravity="center"
+            app:backgroundTint="@drawable/property_1_"
+            android:background="@drawable/property_1_"
+            android:layout_width="290dp"
             />
     </LinearLayout>
 

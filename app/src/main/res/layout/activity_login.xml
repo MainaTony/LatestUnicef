@@ -6,50 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100sp"
-        android:text="@string/welcome"
-        android:textColor="@color/text_color"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/LogoAndBrandNameLayout"/>
+
 
 
     <LinearLayout
         android:id="@+id/LogoAndBrandNameLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/ButtonNameLayout"
         >
 
         <TextView
-            android:id="@+id/companyName"
+            android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/company_name"
-            android:textSize="20sp"
+            android:layout_marginTop="100sp"
+            android:text="@string/welcome"
+            android:textColor="@color/text_color"
+            android:textSize="40sp"
             android:textStyle="bold"
-            android:textColor="@color/brand_color"
             />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/img"
-            android:layout_marginTop="20sp"
-            android:layout_gravity="center"
-            />
+
 
     </LinearLayout>
 
@@ -59,12 +42,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/union"
-        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/LogoAndBrandNameLayout"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         >
+        <TextView
+            android:id="@+id/companyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/company_name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="top|center_horizontal"
+            android:textColor="@color/brand_color"
+            />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@drawable/img"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="120sp"
+            android:layout_gravity="center"
+            />
 
 
         <Button
@@ -74,6 +76,7 @@
             android:text="@string/Login"
             android:textColor="@color/brand_color"
             android:textSize="20sp"
+            android:layout_gravity="center"
             android:textStyle="bold"
             app:backgroundTint="@color/white"
             tools:ignore="DuplicateClickableBoundsCheck" />
@@ -83,6 +86,7 @@
             android:layout_width="277dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:layout_gravity="center"
             app:backgroundTint="@color/brand_color"
             android:textStyle="bold"
             android:text="@string/Sign_up"
