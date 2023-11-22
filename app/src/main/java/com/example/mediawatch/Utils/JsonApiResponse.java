@@ -25,7 +25,6 @@ public class JsonApiResponse {
             // Parse JSON and set values in your model class
             responseModel.setResponseCode(response.getString("responseCode"));
             responseModel.setResponseDescription(response.getString("responseDescription"));
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
