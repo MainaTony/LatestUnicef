@@ -1,5 +1,7 @@
 package com.example.mediawatch;
 
+import static com.example.mediawatch.Utils.JsonApiResponse.parseJsonResponse;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -32,7 +34,8 @@ public class LoginMain extends AppCompatActivity {
     String field1 = "admin";
     String field2 = "admin123";
     private EditText password;
-    String url = "http://192.168.137.1:8080/portal/auth/authenticate";
+    String url = "http://192.168.100.149:8080/portal/auth/authenticate";
+    private static final String TAG = "YourAppTag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,25 +82,19 @@ public class LoginMain extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         // Handle the JSON response
-                        System.out.println("Response: " + response.toString());
-                        ApiResponse apiResponse = new ApiResponse();
+                        ApiResponse responseModel = parseJsonResponse(response);
+                        Log.d(TAG, "My Response Code " + responseModel.getResponseCode());
+                        Log.d(TAG, "Description " + responseModel.getResponseDescription());
 
-                        try {
-                            ObjectMapper objectMapper = new ObjectMapper();
-                            apiResponse = objectMapper.readValue(response.toString(), ApiResponse.class);
-                            System.out.println("Parsed Data: " + apiResponse.getResponseCode());
-                            if(apiResponse.getResponseCode().equals("00")){
-                                Toast.makeText(LoginMain.this, "Member exists in database", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginMain.this, MainActivity.class);
-                                startActivity(intent);
-                            } else{
-                                Toast.makeText(LoginMain.this, "Sorry, You don't exists in the database, please sign up", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        if(responseModel.getResponseCode().equals("00")){
+                            Toast.makeText(LoginMain.this, "Login Success", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginMain.this, MainActivity.class);
+                            startActivity(intent);
+                        } else if(responseModel.getResponseCode().equals("01")){
+                            Toast.makeText(LoginMain.this, responseModel.getResponseDescription(), Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Description " + responseModel.getResponseDescription());
                         }
-
-//
+                        //
 
                     }
                 },
@@ -106,15 +103,14 @@ public class LoginMain extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // Handle errors
                         System.out.println("Error: " + error.toString());
-                        Toast.makeText(LoginMain.this, "Sorry, Member Does exists in database", Toast.LENGTH_SHORT).show();
                     }
                 });
 
         // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest);
-
-
     }
+
+
 
 
 
