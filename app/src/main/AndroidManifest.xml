@@ -3,6 +3,7 @@
     package="com.example.mediawatch">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".Utils.MyApplication"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
