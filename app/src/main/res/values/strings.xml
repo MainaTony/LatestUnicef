@@ -4,7 +4,7 @@
     <string name="welcome">Welcome</string>
     <string name="verifyEmail">Enter Email To Verify</string>
     <string name="Login">Log In</string>
-<!--    <string name="Login">Log In</string>-->
+    <!--    <string name="Login">Log In</string>-->
     <string name="Sign_up">Sign Up</string>
     <string name="Send_otp">Send Otp</string>
     <string name="enter_email">Enter Email</string>

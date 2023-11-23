@@ -40,8 +40,16 @@ public class JsonApiResponse {
                     @Override
                     public void onResponse(JSONObject response) {
                         // Handle the JSON response
-                        ApiResponse responseModel = parseJsonResponse(response);
-                        Log.d(Constants.TAG, "My Response Code " + responseModel.getResponseCode());
+//                        ApiResponse responseModel = parseJsonResponse(response);
+                        ApiResponse responseModel = new ApiResponse();
+                        try {
+                            // Parse JSON and set values in your model class
+                            responseModel.setResponseCode(response.getString("responseCode"));
+                            responseModel.setResponseDescription(response.getString("responseDescription"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d(Constants.TAG, "MyResCode " + responseModel.getResponseCode());
                         Log.d(Constants.TAG, "Description " + responseModel.getResponseDescription());
                     }
                 },

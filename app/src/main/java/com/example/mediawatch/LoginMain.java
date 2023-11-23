@@ -1,5 +1,6 @@
 package com.example.mediawatch;
 
+import static com.example.mediawatch.Utils.JsonApiResponse.makeJsonRequest;
 import static com.example.mediawatch.Utils.JsonApiResponse.parseJsonResponse;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,7 +58,8 @@ public class LoginMain extends AppCompatActivity {
                         JSONObject params = new JSONObject();
                         params.put("username", email.getText().toString());
                         params.put("password", password.getText().toString());
-                        JsonApiResponse.makeJsonRequest(Constants.url, params);
+                        makeJsonRequest(Constants.url, params);
+
                         Intent intent = new Intent(LoginMain.this, MainActivity.class);
                         startActivity(intent);
                     } else{
