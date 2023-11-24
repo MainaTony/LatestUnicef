@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/mainProfileLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/newsFeedRecycler">
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -147,18 +147,6 @@
         </LinearLayout>
 
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/newsFeedRecycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coverLayout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        >
-
-    </androidx.recyclerview.widget.RecyclerView>
-
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -166,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05" />
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -175,9 +163,19 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
+    <FrameLayout
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/coverLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
 
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/activity_news_feed"/>
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
