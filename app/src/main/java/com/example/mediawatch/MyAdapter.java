@@ -49,10 +49,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.myViewHolder>{
         TextView newsUrl;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-            newsDate = itemView.findViewById(R.id.date);
-            newsUrl = itemView.findViewById(R.id.newsUrl);
-            imageView = itemView.findViewById(R.id.newsImage);
-            newsHeadline = itemView.findViewById(R.id.newsHeadline);
+//            newsDate = itemView.findViewById(R.id.date);
+//            newsUrl = itemView.findViewById(R.id.newsUrl);
+//            imageView = itemView.findViewById(R.id.newsImage);
+//            newsHeadline = itemView.findViewById(R.id.newsHeadline);
 
         }
     }

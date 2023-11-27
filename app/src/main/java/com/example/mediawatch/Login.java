@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+//import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class Login extends AppCompatActivity {
 
 
@@ -21,6 +23,9 @@ public class Login extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                new SweetAlertDialog(Login.this)
+//                        .setTitleText("Successfully redirecting to sign up")
+//                        .show();
                 Intent intent = new Intent(Login.this, Verify.class);
                 startActivity(intent);
             }

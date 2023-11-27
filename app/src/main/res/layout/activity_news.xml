@@ -103,6 +103,14 @@
             android:text="Dr Ahmed Matovu, the district health officer, yesterday said all the deaths have been registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile Matovu, the district health officer, yesterday said all the deaths have been registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile Dr Ahmed Matovu, the district health officer, yesterday said all the deaths have been registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile Ahmed Matovu, the district health officer, yesterday said all the deaths have been registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile"/>
 
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/menu"/>
 
 
 

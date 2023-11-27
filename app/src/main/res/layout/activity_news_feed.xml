@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:id="@+id/news_feed"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -32,8 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:text="Gulu district health department concerned about surge in cases of acute diarrhoea among children"
-                />
+                android:hint="Gulu district health department concerned about surge in cases of acute diarrhoea among children" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,31 +42,34 @@
                 >
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/newsDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="9sp"
-                    android:text="01 Aug 2023"/>
+                    android:hint="01 Aug 2023"/>
+<!--                    android:text="01 Aug 2023"   -->
+
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/separator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="9sp"
                     android:text=" | "/>
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:text="HEALTH" />
+                    android:hint="HEALTH"
+                    />
 
                 <TextView
                     android:id="@+id/newsUrl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:text="www.newsvision.co.ke" />
+                    android:hint="www.newsvision.co.ke" />
             </LinearLayout>
 
 
