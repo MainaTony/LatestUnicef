@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mediawatch.ApiResponse.DataApiResponse;
 
+import java.util.List;
+
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
     private DataApiResponse[] dataApiResponse;
 
@@ -21,7 +23,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @NonNull
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_news_feed, parent, false);
+        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.news_feed_main, parent, false);
         return new HomeViewHolder(view);
     }
 
@@ -48,17 +50,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         private TextView personality, amount, fileUrl, storyUrl, prominence, tonality, sector, subSector, company, company_id, theme, key_headline, category, date_created;
         public HomeViewHolder(@NonNull View itemview){
             super(itemview);
-            title = itemview.findViewById(R.id.newsHeadline);
+//            imageView = itemview.findViewById(R.id.newsImage);
+            title = itemview.findViewById(R.id.newsData);
             date = itemview.findViewById(R.id.newsDate);
-            theme = itemview.findViewById(R.id.theme);
-            storyUrl = itemview.findViewById(R.id.newsUrl);
+//
+//            theme = itemview.findViewById(R.id.theme);
+//            storyUrl = itemview.findViewById(R.id.newsUrl);
         }
 
         public void bind(DataApiResponse dataApiResponse){
+//            imageView.setImageResource(d);
             title.setText(dataApiResponse.title);
             date.setText(dataApiResponse.date);
-            theme.setText(dataApiResponse.theme);
-            storyUrl.setText(dataApiResponse.storyUrl);
+//            theme.setText(dataApiResponse.theme);
+//            storyUrl.setText(dataApiResponse.storyUrl);
         }
     }
 }

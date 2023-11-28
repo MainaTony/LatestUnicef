@@ -39,6 +39,7 @@ public class LoginMain extends AppCompatActivity {
     private EditText email;
     private EditText password;
 //    String url = "http://192.168.100.149:8080/portal/auth/authenticate";
+    String urlFetchData = "https://system.farsightmediawatch.com/index.php/Data_api/fetch_editorial_data";
     private static final String TAG = "YourAppTag";
 
     @Override
@@ -53,20 +54,16 @@ public class LoginMain extends AppCompatActivity {
         myLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if(!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
-                        JSONObject params = new JSONObject();
-                        params.put("username", email.getText().toString());
-                        params.put("password", password.getText().toString());
-                        makeJsonRequest(Constants.url, params);
+                if(!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
+                    JSONObject params = new JSONObject();
+//                        params.put("username", email.getText().toString());
+//                        params.put("password", password.getText().toString());
+                    makeJsonRequest(urlFetchData, params);
 
-                        Intent intent = new Intent(LoginMain.this, MainActivity.class);
-                        startActivity(intent);
-                    } else{
-                        Toast.makeText(LoginMain.this, "Please Enter Your Username or password", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    Intent intent = new Intent(LoginMain.this, MainActivity.class);
+                    startActivity(intent);
+                } else{
+                    Toast.makeText(LoginMain.this, "Please Enter Your Username or password", Toast.LENGTH_SHORT).show();
                 }
             }
         });

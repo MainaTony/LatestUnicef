@@ -34,7 +34,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.myViewHolder>{
         News news = arrayList.get(position);
         holder.newsHeadline.setText(news.newsHeading);
         holder.imageView.setImageResource(news.newsImage);
-
     }
 
     @Override

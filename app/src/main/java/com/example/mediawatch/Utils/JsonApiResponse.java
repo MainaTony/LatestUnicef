@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,6 +35,8 @@ public class JsonApiResponse {
     public static void makeJsonRequest(String url, final JSONObject params) {
         RequestQueue requestQueue = MyApplication.getInstance().getRequestQueue();
 
+
+
         // Request a JSON response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, params,
                 new Response.Listener<JSONObject>() {
@@ -41,6 +44,7 @@ public class JsonApiResponse {
                     public void onResponse(JSONObject response) {
                         // Handle the JSON response
 //                        ApiResponse responseModel = parseJsonResponse(response);
+                        Log.d(Constants.TAG, "NattyResponse" + response);
                         ApiResponse responseModel = new ApiResponse();
                         try {
                             // Parse JSON and set values in your model class
@@ -57,10 +61,9 @@ public class JsonApiResponse {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Handle errors
-                        System.out.println("Error: " + error.toString());
+                        System.out.println("DamnError " + error.toString());
                     }
                 });
-
         // Add the request to the RequestQueue.
         requestQueue.add(jsonObjectRequest);
     }
