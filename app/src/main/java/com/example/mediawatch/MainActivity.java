@@ -3,7 +3,9 @@ package com.example.mediawatch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -19,9 +21,13 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mediawatch.ApiResponse.DataApiResponse;
+import com.example.mediawatch.ApiResponse.MediaWatch;
 import com.example.mediawatch.ApiResponse.Project;
 import com.example.mediawatch.ApiResponse.ProjectsAdapter;
 import com.example.mediawatch.databinding.ActivityMainBinding;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -34,30 +40,28 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ProjectsAdapter.OnItemClickListener {
     private static final String TAG = "MainActivity";
+    private static final String KEY_JSON_ARRAY = "key_json_array";
     private RequestQueue requestQueue;
     ActivityMainBinding binding;
+    RecyclerView newsFeed;
+    private static final String PREFS_NAME = "MyPrefs";
+    private static final String KEY_ITEM = "key_item";
+
+    MediaWatch mediaWatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        RecyclerView newsFeed = findViewById(R.id.recycler_view_news_feed);
-
-//        Project project = new Project("news Headline", "news Date");
-        Project[] projects = {
-                new Project("KCPE Exams", "11-28-2023"),
-                new Project("Ruto in Russia", "11-27-2023"),
-                new Project("Mcsk Battles", "11-26-2023"),
-                new Project("Rails on Billateral Talks", "11-25-2023")
-        };
-        ProjectsAdapter adapter = new ProjectsAdapter(projects);
-        newsFeed.setAdapter(adapter);
+        newsFeed = findViewById(R.id.recycler_view_news_feed);
 
 
 //        String[] strings = {"one","two","three"};
@@ -78,12 +82,74 @@ public class MainActivity extends AppCompatActivity {
 //                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
                     // Make a JSON array request
                     makeJsonArrayRequest();
+                    // To retrieve the stored MediaWatch array
+                    MediaWatch[] storedMediaWatchArray = getMediaWatchArray(MainActivity.this);
+                    ProjectsAdapter adapter = new ProjectsAdapter(storedMediaWatchArray, this);
+                    newsFeed.setAdapter(adapter);
+
+//                    if (storedMediaWatchArray != null) {
+//                        // Process the array as needed
+//                        for (MediaWatch mediaWatch : storedMediaWatchArray) {
+//                            System.out.println(mediaWatch);
+//                            Log.d(TAG, "hudini "+mediaWatch);
+//
+//                        }
+//                    }
+
+
+
 
                     break;
                 // Add more cases for additional menu items
                 case R.id.chat:
 //                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
                     // Handle item 3 click
+                     makeJsonArrayRequest();
+                     String retrievedItem = getItem(MainActivity.this);
+                     Log.d(TAG, "retrievedItem "+retrievedItem);
+                     ObjectMapper objectMapper = new ObjectMapper();
+                    try {
+//                        MediaWatch myPojo = objectMapper.readValue(retrievedItem, MediaWatch.class);
+                        MediaWatch[] mediaWatchArray = objectMapper.readValue(retrievedItem, MediaWatch[].class);
+//                        List<MediaWatch> myPojoList = objectMapper.readValue(retrievedItem, new TypeReference<List<MediaWatch>>() {});
+//                        Log.e(TAG, "halal: " + myPojoList);
+//                        MediaWatch[] mediaWatchArray = myPojoList.toArray(new MediaWatch[0]);
+                        // To retrieve the stored JSON array string
+                        String storedJsonString = getJsonArrayString(MainActivity.this);
+                        if (storedJsonString != null) {
+                            // Convert the string back to a JSON array if needed
+                            JSONArray jsonArray = new JSONArray(storedJsonString);
+                            // Process the JSON array as needed
+//                            ProjectsAdapter adapter = new ProjectsAdapter(jsonArray);
+//                    newsFeed.setAdapter(adapter);
+                        }
+
+//                        ProjectsAdapter adapter = new ProjectsAdapter(mediaWatchArray);
+//                        newsFeed.setAdapter(adapter);
+
+                    } catch (JsonProcessingException e) {
+                        Log.e(TAG, "oops: " + e.toString());
+                        throw new RuntimeException(e);
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                    // Print the elements of the JSON array
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        System.out.println(jsonArray.getString(i));
+//                    }
+
+//                    ProjectsAdapter adapter = new ProjectsAdapter(retrievedItem);
+//                    newsFeed.setAdapter(adapter);
+
+
+                    if (retrievedItem != null) {
+                        // Do something with the retrieved item
+                    } else {
+                        // Handle the case where the item couldn't be retrieved
+                    }
                     break;
                 case R.id.download:
 //                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
@@ -92,9 +158,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-
-
-
 
 
     }
@@ -111,6 +174,32 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        // Convert the JSONArray to a list of MediaWatch
+                        List<MediaWatch> mediaWatchList = new ArrayList<>();
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject jsonMediaWatch = response.getJSONObject(i);
+                                mediaWatch = new MediaWatch();
+                                mediaWatch.setTitle(jsonMediaWatch.getString("title"));
+                                mediaWatch.setCategory(jsonMediaWatch.getString("category"));
+                                mediaWatch.setDate(jsonMediaWatch.getString("date"));
+                                mediaWatch.setSummary(jsonMediaWatch.getString("summary"));
+                                mediaWatchList.add(mediaWatch);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        // Convert the list to an array
+                        MediaWatch[] mediaWatchArray = mediaWatchList.toArray(new MediaWatch[0]);
+
+                        // Save the array in SharedPreferences
+                        saveMediaWatchArray(MainActivity.this, mediaWatchArray);
+
+
+
+
                         // Handle successful array response
 //                        Log.d(TAG, "onBettyResponse"+response);
 
@@ -122,12 +211,45 @@ public class MainActivity extends AppCompatActivity {
 //                        }
                         Gson gson = new Gson();
 //                        DataApiResponse myResponse = gson.fromJson(String.valueOf(response), DataApiResponse.class);
-                        Type type = new TypeToken<List<DataApiResponse>>(){}.getType();
-                        List<DataApiResponse> dataApiResponseList = gson.fromJson(String.valueOf(response), type);
-                        // Convert List to array if needed
-                        DataApiResponse[] dataApiResponseArray = dataApiResponseList.toArray(new DataApiResponse[0]);
+//                        Type type = new TypeToken<List<DataApiResponse>>(){}.getType();
+//                        List<DataApiResponse> dataApiResponseList = gson.fromJson(String.valueOf(response), type);
+//                        // Convert List to array if needed
+//                        DataApiResponse[] dataApiResponseArray = dataApiResponseList.toArray(new DataApiResponse[0]);
 
-                        Log.d(TAG, "mkuru2: " + dataApiResponseArray[1]);
+//                        Type type = new TypeToken<List<MediaWatch>>() {
+//                        }.getType();
+//                        List<MediaWatch> dataApiResponseList = gson.fromJson(String.valueOf(response), type);
+//                        // Convert List to array if needed
+//                        MediaWatch[] dataApiResponseArray = dataApiResponseList.toArray(new MediaWatch[0]);
+//                        saveItem(MainActivity.this, dataApiResponseArray);
+
+                        // Save a JSON array as a single string in SharedPreferences
+                        // Convert the JSON array to a string
+                        String jsonString = response.toString();
+
+                        // Save the string in SharedPreferences
+                        saveJsonArrayString(MainActivity.this, jsonString);
+
+
+
+//                        for (int i = 0; i < dataApiResponseArray.length; i++){
+//
+//
+//                        }
+
+
+
+
+                        Project[] projects = {
+                                new Project("KCPE Exams", "11-28-2023"),
+                                new Project("Ruto in Russia", "11-27-2023"),
+                                new Project("Mcsk Battles", "11-26-2023"),
+                                new Project("Rails on Billateral Talks", "11-25-2023")
+                        };
+//                        ProjectsAdapter adapter = new ProjectsAdapter(dataApiResponseArray);
+//                        newsFeed.setAdapter(adapter);
+
+//                        Log.d(TAG, "mkuru2: " + dataApiResponseArray[1]);
 //                            RecyclerView newsFeed = findViewById(R.id.recycler_view_news_feed);
 //                            HomeAdapter homeAdapter = new HomeAdapter(dataApiResponseArray);
 //                            newsFeed.setAdapter(homeAdapter);
@@ -150,7 +272,6 @@ public class MainActivity extends AppCompatActivity {
 
 //                                String dataItem = jsonObject.getString("id");
 //                                String time= jsonObject.getString("time");
-
 
 
                                 // Call a method or perform actions based on the specific array item
@@ -194,10 +315,95 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG, "handleError: " + error.toString());
     }
 
+    public static void saveItem(Context context, MediaWatch[] mediaWatch) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(KEY_ITEM, Arrays.toString(mediaWatch));
+        editor.apply();
+    }
+    // Retrieve an item from SharedPreferences
+    public static String getItem(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(KEY_ITEM, null);
+    }
+
+    private static void saveJsonArrayString(Context context, String jsonString) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(KEY_JSON_ARRAY, jsonString);
+        editor.apply();
+    }
+
+    private static String getJsonArrayString(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(KEY_JSON_ARRAY, null);
+    }
+
+    private static void saveMediaWatchArray(Context context, MediaWatch[] mediaWatchArray) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        // Convert the array to a JSON string before saving
+        JSONArray jsonArray = new JSONArray();
+        for (MediaWatch mediaWatch : mediaWatchArray) {
+            JSONObject jsonMediaWatch = new JSONObject();
+            try {
+                jsonMediaWatch.put("title", mediaWatch.getTitle());
+                jsonMediaWatch.put("category", mediaWatch.getCategory());
+                jsonArray.put(jsonMediaWatch);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        editor.putString(KEY_JSON_ARRAY, jsonArray.toString());
+        editor.apply();
+    }
 
 
+    private static MediaWatch[] getMediaWatchArray(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String jsonArrayString = preferences.getString(KEY_JSON_ARRAY, null);
 
+        if (jsonArrayString != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(jsonArrayString);
+                MediaWatch[] mediaWatchArray = new MediaWatch[jsonArray.length()];
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonMediaWatch = jsonArray.getJSONObject(i);
+                    MediaWatch mediaWatch = new MediaWatch();
+                    mediaWatch.setTitle(jsonMediaWatch.getString("title"));
+                    mediaWatch.setCategory(jsonMediaWatch.getString("category"));
+                    mediaWatch.setDate(jsonMediaWatch.getString("date"));
+                    mediaWatch.setSummary(jsonMediaWatch.getString("summary"));
+                    mediaWatchArray[i] = mediaWatch;
+                }
+                return mediaWatchArray;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public void onItemClick(MediaWatch mediaWatch) {
+        Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+        Toast.makeText(MainActivity.this, "dateToday"+mediaWatch.getDate(), Toast.LENGTH_SHORT).show();
+        intent.putExtra("title", mediaWatch.getTitle());
+        intent.putExtra("category", mediaWatch.getCategory());
+        intent.putExtra("summary", mediaWatch.getSummary());
+
+        startActivity(intent);
+//        String dateToday = mediaWatch.getDate();
+//        Toast.makeText(this, "dateToday"+position, Toast.LENGTH_SHORT).show();
+////        intent.putExtra("Title", );
+
+//        startActivity(intent);
+//        String dateToday = mediaWatch.getDate();
+//        Toast.makeText(MainActivity.this, "dateToday"+dateToday, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Position is " +position, Toast.LENGTH_SHORT).show();
+    }
 
 
 }
