@@ -62,94 +62,41 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         newsFeed = findViewById(R.id.recycler_view_news_feed);
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        try{
+            makeJsonArrayRequest();
+            // To retrieve the stored MediaWatch array
+            MediaWatch[] storedMediaWatchArray = getMediaWatchArray(MainActivity.this);
+            ProjectsAdapter adapter = new ProjectsAdapter(storedMediaWatchArray, this);
+            newsFeed.setAdapter(adapter);
+        } catch (Exception e){
+            System.out.print("MyException:"+e.toString());
+        }
+
+
 
 
 //        String[] strings = {"one","two","three"};
 //        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, strings);
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            requestQueue = Volley.newRequestQueue(this);
+
             switch (item.getItemId()) {
                 case R.id.home:
                     // Handle item 1 click
                     break;
                 case R.id.news:
                     // Handle item 2 click
-//                    new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-//                            .setTitleText("Good job!")
-//                            .setContentText("You clicked the button!")
-//                            .show();
-//                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
-                    // Make a JSON array request
-                    makeJsonArrayRequest();
-                    // To retrieve the stored MediaWatch array
-                    MediaWatch[] storedMediaWatchArray = getMediaWatchArray(MainActivity.this);
-                    ProjectsAdapter adapter = new ProjectsAdapter(storedMediaWatchArray, this);
-                    newsFeed.setAdapter(adapter);
-
-//                    if (storedMediaWatchArray != null) {
-//                        // Process the array as needed
-//                        for (MediaWatch mediaWatch : storedMediaWatchArray) {
-//                            System.out.println(mediaWatch);
-//                            Log.d(TAG, "hudini "+mediaWatch);
-//
-//                        }
-//                    }
-
-
-
+                    Intent intent = new Intent(MainActivity.this, Discover.class);
+//                    intent.putExtra("title", mediaWatch.getTitle());
+//                    intent.putExtra("category", mediaWatch.getCategory());
+//                    intent.putExtra("summary", mediaWatch.getSummary());
+                    startActivity(intent);
 
                     break;
                 // Add more cases for additional menu items
                 case R.id.chat:
-//                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
-                    // Handle item 3 click
-                     makeJsonArrayRequest();
-                     String retrievedItem = getItem(MainActivity.this);
-                     Log.d(TAG, "retrievedItem "+retrievedItem);
-                     ObjectMapper objectMapper = new ObjectMapper();
-                    try {
-//                        MediaWatch myPojo = objectMapper.readValue(retrievedItem, MediaWatch.class);
-                        MediaWatch[] mediaWatchArray = objectMapper.readValue(retrievedItem, MediaWatch[].class);
-//                        List<MediaWatch> myPojoList = objectMapper.readValue(retrievedItem, new TypeReference<List<MediaWatch>>() {});
-//                        Log.e(TAG, "halal: " + myPojoList);
-//                        MediaWatch[] mediaWatchArray = myPojoList.toArray(new MediaWatch[0]);
-                        // To retrieve the stored JSON array string
-                        String storedJsonString = getJsonArrayString(MainActivity.this);
-                        if (storedJsonString != null) {
-                            // Convert the string back to a JSON array if needed
-                            JSONArray jsonArray = new JSONArray(storedJsonString);
-                            // Process the JSON array as needed
-//                            ProjectsAdapter adapter = new ProjectsAdapter(jsonArray);
-//                    newsFeed.setAdapter(adapter);
-                        }
 
-//                        ProjectsAdapter adapter = new ProjectsAdapter(mediaWatchArray);
-//                        newsFeed.setAdapter(adapter);
-
-                    } catch (JsonProcessingException e) {
-                        Log.e(TAG, "oops: " + e.toString());
-                        throw new RuntimeException(e);
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-
-
-                    // Print the elements of the JSON array
-//                    for (int i = 0; i < jsonArray.length(); i++) {
-//                        System.out.println(jsonArray.getString(i));
-//                    }
-
-//                    ProjectsAdapter adapter = new ProjectsAdapter(retrievedItem);
-//                    newsFeed.setAdapter(adapter);
-
-
-                    if (retrievedItem != null) {
-                        // Do something with the retrieved item
-                    } else {
-                        // Handle the case where the item couldn't be retrieved
-                    }
                     break;
                 case R.id.download:
 //                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
@@ -389,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
     @Override
     public void onItemClick(MediaWatch mediaWatch) {
         Intent intent = new Intent(MainActivity.this, NewsActivity.class);
-        Toast.makeText(MainActivity.this, "dateToday"+mediaWatch.getDate(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this, "dateToday"+mediaWatch.getDate(), Toast.LENGTH_SHORT).show();
         intent.putExtra("title", mediaWatch.getTitle());
         intent.putExtra("category", mediaWatch.getCategory());
         intent.putExtra("summary", mediaWatch.getSummary());

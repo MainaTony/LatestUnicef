@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="6dp"
-    app:cardBackgroundColor="#D9D9D9"
+    app:cardBackgroundColor="#ECECEC"
     android:layout_margin="12dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/newsImage"
             android:layout_margin="12dp"
@@ -25,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/newsImage"
             android:text="News Feed"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:layout_toRightOf="@+id/newsImage">
         </TextView>
 

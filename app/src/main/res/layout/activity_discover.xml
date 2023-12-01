@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end"
+        android:layout_margin="12dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
@@ -28,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_margin="12dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchLayout">
@@ -36,216 +38,276 @@
             android:id="@+id/textView28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:text="Discover"/>
 
         <TextView
             android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:text="Unicef News" />
 
 
     </LinearLayout>
 
-    <HorizontalScrollView
-        android:id="@+id/majorHeadlinesScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headingsLayout">
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/category_discover_recycler"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/headingsLayout"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:scrollbars="horizontal"-->
+<!--        tools:listitem="@layout/category">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="SAFETY" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="HEALTH" />
-
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="UNICEF"/>
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="EDUCATION"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
     <HorizontalScrollView
-        android:id="@+id/minorHeadlinesScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@+id/headingsLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/majorHeadlinesScrollView">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/horizontalListContainer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            >
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="All" />
+            <!-- List items will be added here dynamically -->
 
-            <TextView
-                android:id="@+id/onlineMedia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="Online Media" />
-
-            <TextView
-                android:id="@+id/radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="Radio"/>
-
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="TV"/>
-
-            <TextView
-                android:id="@+id/printMedia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-
-                android:text="Print Media"/>
         </LinearLayout>
+
     </HorizontalScrollView>
 
-    <HorizontalScrollView
-        android:id="@+id/tonalityHeadlinesScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/minorHeadlinesScrollView">
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/majorHeadlinesScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/headingsLayout">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center">-->
 
-            <TextView
-                android:id="@+id/tonality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:text="Tonality" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView24"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:text="SAFETY" />-->
 
-            <TextView
-                android:id="@+id/allTonality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="All" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView25"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:text="HEALTH" />-->
 
-            <TextView
-                android:id="@+id/positive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="Positive"/>
+<!--            <TextView-->
+<!--                android:id="@+id/textView26"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:text="UNICEF"/>-->
 
-            <TextView
-                android:id="@+id/neutral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="Neutral"/>
+<!--            <TextView-->
+<!--                android:id="@+id/textView27"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:text="EDUCATION"/>-->
+<!--        </LinearLayout>-->
+<!--    </HorizontalScrollView>-->
 
-            <TextView
-                android:id="@+id/negative"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="Negative"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/minorHeadlinesScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/majorHeadlinesScrollView">-->
 
-    <LinearLayout
-        android:id="@+id/newsSectionView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tonalityHeadlinesScrollView">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center"-->
+<!--            >-->
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/newsactivity"/>
+<!--            <TextView-->
+<!--                android:id="@+id/all"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="All" />-->
 
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:textSize="12sp"
-            android:text="monitor.co.ug"/>
+<!--            <TextView-->
+<!--                android:id="@+id/onlineMedia"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="Online Media" />-->
 
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="left"
-            android:text="Cholera kills 8 in Kayunga district"/>
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="9sp"
-            android:layout_gravity="left"
-            android:text="02 Aug 2023" />
+<!--            <TextView-->
+<!--                android:id="@+id/radio"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="Radio"/>-->
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="Full Coverage of this story"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="TV"/>-->
 
-    </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/printMedia"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+
+<!--                android:text="Print Media"/>-->
+<!--        </LinearLayout>-->
+<!--    </HorizontalScrollView>-->
+
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/tonalityHeadlinesScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/minorHeadlinesScrollView">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_horizontal">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tonality"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="Tonality" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/allTonality"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="All" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/positive"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="Positive"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/neutral"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="Neutral"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/negative"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="10sp"-->
+<!--                android:text="Negative"/>-->
+<!--        </LinearLayout>-->
+<!--    </HorizontalScrollView>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/newsSectionView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:gravity="center"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tonalityHeadlinesScrollView">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView8"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:srcCompat="@drawable/newsactivity"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView30"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:textSize="12sp"-->
+<!--            android:text="monitor.co.ug"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView31"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:text="Cholera kills 8 in Kayunga district"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/textView32"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="9sp"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:text="02 Aug 2023" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="15sp"-->
+<!--            android:text="Full Coverage of this story"/>-->
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/lastLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/newsSectionView"-->
+<!--        android:gravity="fill_horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+<!--        <TextView-->
+<!--            android:id="@+id/test"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Test 1"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/test1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Test 2"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/test2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Test 3"/>-->
+<!--    </LinearLayout>-->
+
+
 
 
 
