@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                                 mediaWatch.setCategory(jsonMediaWatch.getString("category"));
                                 mediaWatch.setDate(jsonMediaWatch.getString("date"));
                                 mediaWatch.setSummary(jsonMediaWatch.getString("summary"));
+                                mediaWatch.setTonality(jsonMediaWatch.getString("tonality"));
                                 mediaWatchList.add(mediaWatch);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -143,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 
                         // Save the array in SharedPreferences
                         saveMediaWatchArray(MainActivity.this, mediaWatchArray);
-
 
 
 
@@ -187,12 +187,12 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 
 
 
-                        Project[] projects = {
-                                new Project("KCPE Exams", "11-28-2023"),
-                                new Project("Ruto in Russia", "11-27-2023"),
-                                new Project("Mcsk Battles", "11-26-2023"),
-                                new Project("Rails on Billateral Talks", "11-25-2023")
-                        };
+//                        Project[] projects = {
+//                                new Project("KCPE Exams", "11-28-2023"),
+//                                new Project("Ruto in Russia", "11-27-2023"),
+//                                new Project("Mcsk Battles", "11-26-2023"),
+//                                new Project("Rails on Billateral Talks", "11-25-2023")
+//                        };
 //                        ProjectsAdapter adapter = new ProjectsAdapter(dataApiResponseArray);
 //                        newsFeed.setAdapter(adapter);
 
@@ -297,6 +297,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
             try {
                 jsonMediaWatch.put("title", mediaWatch.getTitle());
                 jsonMediaWatch.put("category", mediaWatch.getCategory());
+                jsonMediaWatch.put("tonality", mediaWatch.getTonality());
                 jsonArray.put(jsonMediaWatch);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -308,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
     }
 
 
-    private static MediaWatch[] getMediaWatchArray(Context context) {
+    public static MediaWatch[] getMediaWatchArray(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String jsonArrayString = preferences.getString(KEY_JSON_ARRAY, null);
 
@@ -323,6 +324,8 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                     mediaWatch.setCategory(jsonMediaWatch.getString("category"));
                     mediaWatch.setDate(jsonMediaWatch.getString("date"));
                     mediaWatch.setSummary(jsonMediaWatch.getString("summary"));
+                    mediaWatch.setStoryurl(jsonMediaWatch.getString("storyurl"));
+                    mediaWatch.setTonality(jsonMediaWatch.getString("tonality"));
                     mediaWatchArray[i] = mediaWatch;
                 }
                 return mediaWatchArray;

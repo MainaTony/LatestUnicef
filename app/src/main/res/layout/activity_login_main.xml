@@ -96,6 +96,16 @@
             android:layout_height="wrap_content"
             android:text="@string/forgot_Password"
             android:textSize="10sp"/>
+
+        <ProgressBar
+            android:id="@+id/loginMainProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            android:progressTint="@color/white"/>
     </LinearLayout>
 
 

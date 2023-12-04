@@ -34,6 +34,7 @@
 
 
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -58,11 +59,24 @@
             android:textColor="@color/brand_color"
             />
 
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:srcCompat="@drawable/img"-->
+<!--            android:layout_marginTop="20sp"-->
+<!--            android:layout_marginBottom="120sp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            />-->
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/companyImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/img"
+            app:srcCompat="@drawable/img"
+            tools:layout_editor_absoluteX="187dp"
+            tools:layout_editor_absoluteY="306dp"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="120sp"
             android:layout_gravity="center"
@@ -92,6 +106,18 @@
             android:text="@string/Sign_up"
             app:layout_constraintTop_toBottomOf="@+id/loginButton"
            />
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/loginProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            android:progressTint="@color/white"/>
+<!--            android:theme="@style/Widget.AppCompat.ProgressBar.Horizontal" />-->
 
     </LinearLayout>
 

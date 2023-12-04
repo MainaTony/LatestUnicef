@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 //import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Login extends AppCompatActivity {
+    private ProgressBar progressBar;
+
 
 
     @Override
@@ -19,6 +22,7 @@ public class Login extends AppCompatActivity {
 
         Button signUp = findViewById(R.id.signUpButton);
         Button login = findViewById(R.id.loginMainButton);
+        progressBar = findViewById(R.id.loginProgressBar);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,8 +38,10 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(Login.this, LoginMain.class);
                 startActivity(intent);
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

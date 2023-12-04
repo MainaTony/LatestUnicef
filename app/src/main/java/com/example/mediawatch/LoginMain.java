@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.mediawatch.Utils.Constants;
@@ -40,6 +41,7 @@ public class LoginMain extends AppCompatActivity {
     private EditText email;
     private EditText password;
 //    String url = "http://192.168.100.149:8080/portal/auth/authenticate";
+    private ProgressBar progressBar;
     String urlFetchData = "https://system.farsightmediawatch.com/index.php/Data_api/fetch_editorial_data";
     private static final String TAG = "YourAppTag";
 
@@ -50,11 +52,13 @@ public class LoginMain extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        progressBar = findViewById(R.id.loginMainProgressBar);
 
         Button myLoginButton = findViewById(R.id.myLoginButton);
         myLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 if(!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
                     JSONObject params = new JSONObject();
 //                        params.put("username", email.getText().toString());
@@ -62,6 +66,7 @@ public class LoginMain extends AppCompatActivity {
                     makeJsonRequest(urlFetchData, params);
                     Intent intent = new Intent(LoginMain.this, MainActivity.class);
                     startActivity(intent);
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else{
                     Toast.makeText(LoginMain.this, "Please Enter Your Username or password", Toast.LENGTH_SHORT).show();
                 }
