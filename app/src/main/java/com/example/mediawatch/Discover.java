@@ -31,7 +31,9 @@ public class Discover extends AppCompatActivity {
 
     TextView discover_tonality, discover_tonality_all, discover_tonality_positive, discover_tonality_neutral, discover_tonality_negative;
 
-    TextView discover_print_media, discover_tv, discover_radio, discover_online_media, discover_media_type_all ;
+    TextView discover_print_media, discover_tv, discover_radio, discover_online_media, discover_media_type_all;
+
+    TextView discover_category_unicef_online_media, discover_category_governance, discover_category_child_protection, discover_category_child_health, discover_category_unicef, discover_category_child_education, discover_category_others;
 
 
     @Override
@@ -55,6 +57,14 @@ public class Discover extends AppCompatActivity {
         discover_tonality_neutral = findViewById(R.id.discover_tonality_neutral);
         discover_tonality_negative = findViewById(R.id.discover_tonality_negative);
 
+//        Category Section binding
+        discover_category_unicef_online_media = findViewById(R.id.discover_category_unicef_online_media);
+        discover_category_governance = findViewById(R.id.discover_category_governance);
+        discover_category_child_protection = findViewById(R.id.discover_category_child_protection);
+        discover_category_child_health = findViewById(R.id.discover_category_child_health);
+        discover_category_unicef = findViewById(R.id.discover_category_unicef);
+        discover_category_child_education = findViewById(R.id.discover_category_child_education);
+        discover_category_others = findViewById(R.id.discover_category_others);
 
         MediaWatch[] storedMediaWatchArray = getMediaWatchArray(Discover.this);
 //        Toast.makeText(Discover.this, "Hello "+storedMediaWatchArray.length, Toast.LENGTH_SHORT).show();
@@ -70,6 +80,15 @@ public class Discover extends AppCompatActivity {
         ArrayList<MediaWatch> radio = new ArrayList<>();
         ArrayList<MediaWatch> onlineMedia = new ArrayList<>();
         ArrayList<MediaWatch> allMediaType = new ArrayList<>();
+
+//        Category
+        ArrayList<MediaWatch> others = new ArrayList<>();
+        ArrayList<MediaWatch> childEducation = new ArrayList<>();
+        ArrayList<MediaWatch> unicef = new ArrayList<>();
+        ArrayList<MediaWatch> childHealth = new ArrayList<>();
+        ArrayList<MediaWatch> childProtection = new ArrayList<>();
+        ArrayList<MediaWatch> governance = new ArrayList<>();
+        ArrayList<MediaWatch> unicefOnlineMedia = new ArrayList<>();
 
         RecyclerView discover_feed_recycler = findViewById(R.id.verticalTitleDiscoverNewsRecycler);
         UnicefAdapter unicefAdapter = new UnicefAdapter(storedMediaWatchArray);
@@ -98,6 +117,27 @@ public class Discover extends AppCompatActivity {
                 printMedia.add(element);
             }
         }
+
+        //        Sorting Category section
+        for (MediaWatch element : storedMediaWatchArray){
+            if (element.getCategory().equalsIgnoreCase("Others")){
+                others.add(element);
+            }else if (element.getCategory().equalsIgnoreCase("Child Education")){
+                childEducation.add(element);
+            } else if(element.getCategory().equalsIgnoreCase("UNICEF")){
+                unicef.add(element);
+            } else if(element.getCategory().equalsIgnoreCase("CHILD HEALTH")){
+                childHealth.add(element);
+            } else if(element.getCategory().equalsIgnoreCase("CHILD PROTECTION")){
+                childProtection.add(element);
+            } else if(element.getCategory().equalsIgnoreCase("UNICEF ONLINE MEDIA")){
+                unicefOnlineMedia.add(element);
+            } else if(element.getCategory().equalsIgnoreCase("GOVERNANCE")){
+                governance.add(element);
+            }
+        }
+
+
 //        Media Type On Click Listeners
         discover_print_media.setOnClickListener(new View.OnClickListener() {
             @Override
