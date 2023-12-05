@@ -79,47 +79,67 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <!-- Add your content items here -->
             <TextView
+                android:id="@+id/discover_category_unicef_online_media"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SAFETY"
-                android:layout_marginLeft="16dp"
+                android:text="UNICEF ONLINE MEDIA"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/healthTxt"
+                android:id="@+id/discover_category_governance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="HEALTH"
+                android:text="GOVERNANCE"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/discover_category_child_protection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHILD PROTECTION"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/discover_category_child_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHILD HEALTH"
+                android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                />
 
             <TextView
+                android:id="@+id/discover_category_unicef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:text="UNICEF"
+                android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
 
             <TextView
+                android:id="@+id/discover_category_child_education"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="EDUCATION"
+                android:text="CHILD EDUCATION"
+                android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
 
+
+
             <TextView
+                android:id="@+id/discover_category_others"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="PROTECTION"
+                android:text="OTHERS"
+                android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
 

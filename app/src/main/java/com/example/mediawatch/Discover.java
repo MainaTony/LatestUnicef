@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ public class Discover extends AppCompatActivity {
         TextView healthTxt;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
-        healthTxt = findViewById(R.id.healthTxt);
+//        healthTxt = findViewById(R.id.healthTxt);
 
 //        Media Type Section binding
         discover_print_media = findViewById(R.id.discover_print_media);
