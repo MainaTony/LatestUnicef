@@ -147,6 +147,7 @@
 
             <!-- Add your content items here -->
             <TextView
+                android:id="@+id/discover_media_type_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="All"
@@ -154,6 +155,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/discover_online_media"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -162,6 +164,7 @@
                 />
 
             <TextView
+                android:id="@+id/discover_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -170,6 +173,7 @@
                 />
 
             <TextView
+                android:id="@+id/discover_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -178,6 +182,7 @@
                 />
 
             <TextView
+                android:id="@+id/discover_print_media"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"

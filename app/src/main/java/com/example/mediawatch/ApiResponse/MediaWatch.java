@@ -7,6 +7,15 @@ public class MediaWatch {
     String storyurl;
     String summary;
     String tonality;
+    String mediatype;
+
+    public String getMediatype() {
+        return mediatype;
+    }
+
+    public void setMediatype(String mediatype) {
+        this.mediatype = mediatype;
+    }
 
     public MediaWatch() {
     }
@@ -27,13 +36,14 @@ public class MediaWatch {
         this.summary = summary;
     }
 
-    public MediaWatch(String title, String date, String category, String storyurl, String summary, String tonality) {
+    public MediaWatch(String title, String date, String category, String storyurl, String summary, String tonality, String mediatype) {
         this.title = title;
         this.date = date;
         this.category = category;
         this.storyurl = storyurl;
         this.summary = summary;
         this.tonality = tonality;
+        this.mediatype = mediatype;
     }
 
     public String getTitle() {
