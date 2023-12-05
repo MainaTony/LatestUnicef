@@ -5,6 +5,8 @@ import static com.example.mediawatch.MainActivity.getMediaWatchArray;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +24,7 @@ import com.example.mediawatch.ApiResponse.UnicefAdapter;
 
 import java.util.ArrayList;
 
-public class Discover extends AppCompatActivity {
+public class Discover extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "Discover";
     TextView category_discover_tv;
@@ -34,7 +36,7 @@ public class Discover extends AppCompatActivity {
     TextView discover_print_media, discover_tv, discover_radio, discover_online_media, discover_media_type_all;
 
     TextView discover_category_unicef_online_media, discover_category_governance, discover_category_child_protection, discover_category_child_health, discover_category_unicef, discover_category_child_education, discover_category_others;
-
+    ArrayList<MediaWatch> combined = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class Discover extends AppCompatActivity {
 //        Toast.makeText(Discover.this, "Hello "+storedMediaWatchArray.length, Toast.LENGTH_SHORT).show();
 
 //        Tonality
-        ArrayList<MediaWatch> positive = new ArrayList<>();
+        final ArrayList<MediaWatch> positive = new ArrayList<>();
         ArrayList<MediaWatch> negative = new ArrayList<>();
         ArrayList<MediaWatch> neutral = new ArrayList<>();
 
@@ -136,6 +138,77 @@ public class Discover extends AppCompatActivity {
                 governance.add(element);
             }
         }
+
+        discover_category_unicef_online_media.setOnClickListener(this);
+        discover_category_governance.setOnClickListener(this);
+        discover_category_child_protection.setOnClickListener(this);
+        discover_category_child_health.setOnClickListener(this);
+        discover_category_unicef.setOnClickListener(this);
+        discover_category_child_education.setOnClickListener(this);
+        discover_category_others.setOnClickListener(this);
+//        discover_category_unicef_online_media.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MediaWatch[] onlineMediaWatch = unicefOnlineMedia.toArray(unicefOnlineMedia.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(onlineMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+//        discover_category_governance.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MediaWatch[] governanceMediaWatch = governance.toArray(governance.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(governanceMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+//        discover_category_child_protection.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MediaWatch[] childProtectionMediaWatch = childProtection.toArray(childProtection.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(childProtectionMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+//        discover_category_child_health.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MediaWatch[] childHealthMediaWatch = childHealth.toArray(childHealth.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(childHealthMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+//        discover_category_unicef.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MediaWatch[] unicefMediaWatch = unicef.toArray(unicef.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(unicefMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+//        discover_category_child_education.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                discover_category_child_education.setBackgroundResource(R.color.brand_color);
+//                discover_category_child_education.setTextColor(Color.parseColor("#FFFFFF"));
+//                MediaWatch[] childMediaWatch = childEducation.toArray(childEducation.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(childMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+
+//        discover_category_others.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                discover_category_others.setBackgroundResource(R.color.brand_color);
+//                discover_category_others.setTextColor(Color.parseColor("#FFFFFF"));
+//                MediaWatch[] othersMediaWatch = others.toArray(others.toArray(new MediaWatch[0]));
+//                UnicefAdapter unicefAdapter = new UnicefAdapter(othersMediaWatch);
+//                discover_feed_recycler.setAdapter(unicefAdapter);
+//            }
+//        });
+
+
 
 
 //        Media Type On Click Listeners
@@ -223,12 +296,6 @@ public class Discover extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
         Project[] project = {
                 new Project("UNICEF"),
                 new Project("EDUCATION"),
@@ -236,5 +303,24 @@ public class Discover extends AppCompatActivity {
                 new Project("OTHER"),
                 new Project("MILWAUKEE")
         };
+    }
+
+    public static void displayResult(){
+        System.out.print("Final result");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.discover_category_unicef_online_media:
+//                Toast.makeText(Discover.this, "TV = "+positive.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Unicef Online Media Clicked", Toast.LENGTH_SHORT).show();
+                break;
+
+
+            default:
+
+                break;
+        }
     }
 }
