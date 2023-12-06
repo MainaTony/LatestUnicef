@@ -101,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                 case R.id.download:
 //                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
                     // Handle item 4 click
+                    Intent download = new Intent(MainActivity.this, Download.class);
+//                    intent.putExtra("title", mediaWatch.getTitle());
+//                    intent.putExtra("category", mediaWatch.getCategory());
+//                    intent.putExtra("summary", mediaWatch.getSummary());
+                    startActivity(download);
                     break;
             }
             return false;

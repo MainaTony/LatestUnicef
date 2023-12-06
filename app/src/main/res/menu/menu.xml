@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/news"
-        android:title="News"
+        android:title="Home"
         android:icon="@drawable/news2" />
 
     <item
