@@ -97,6 +97,12 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                 // Add more cases for additional menu items
                 case R.id.chat:
 
+                    Intent chatIntent = new Intent(MainActivity.this, ChatHome.class);
+//                    intent.putExtra("title", mediaWatch.getTitle());
+//                    intent.putExtra("category", mediaWatch.getCategory());
+//                    intent.putExtra("summary", mediaWatch.getSummary());
+                    startActivity(chatIntent);
+
                     break;
                 case R.id.download:
 //                    startActivity(new Intent(MainActivity.this, NewsActivity.class));

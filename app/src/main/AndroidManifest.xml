@@ -14,6 +14,12 @@
         android:theme="@style/Theme.MediaWatch"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ChatAllChannels"
+            android:exported="false" />
+        <activity
+            android:name=".ChatHome"
+            android:exported="false" />
+        <activity
             android:name=".Download"
             android:exported="false" />
         <activity
