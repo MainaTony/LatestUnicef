@@ -6,4 +6,195 @@
     android:layout_height="match_parent"
     tools:context=".ChatCreateChannel">
 
+    <RelativeLayout
+        android:id="@+id/chat_create_channels_back_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <ImageView
+            android:id="@+id/chat_create_channels_back_button"
+            android:layout_margin="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/chat_create_channels_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Channel"
+            android:textSize="20sp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/chat_create_channels_back_button"
+            />
+
+        <TextView
+            android:id="@+id/chat_create_channels_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Channel and add your team members"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            android:layout_below="@+id/chat_create_channels_text2"
+            />
+
+        <TextView
+            android:id="@+id/chat_create_channels_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Channel Name"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/chat_create_channels_text"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chat_create_channels_channel_name_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_create_channels_text3"
+            android:backgroundTint="#808080"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp">
+
+            <EditText
+                android:id="@+id/chat_create_channels_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26sp"
+                android:textSize="20sp"
+                android:hint="Channel Name"
+
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/chat_create_channels_text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thematic"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/chat_create_channels_channel_name_layout"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chat_create_channels_theme_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_create_channels_text4"
+            android:backgroundTint="#808080"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp">
+
+            <EditText
+                android:id="@+id/chat_thematic_channels_edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="26sp"
+                android:textSize="20sp"
+                android:hint="Safety"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chat_create_channels_theme_layout_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_create_channels_text4"
+            android:layout_toRightOf="@+id/chat_create_channels_theme_layout"
+            android:backgroundTint="#808080"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp">
+
+            <EditText
+                android:id="@+id/chat_thematic_channels_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="26sp"
+                android:textSize="20sp"
+                android:hint="Health"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chat_create_channels_theme_layout_unicef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_create_channels_text4"
+            android:layout_toRightOf="@+id/chat_create_channels_theme_layout_health"
+            android:backgroundTint="#808080"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp">
+
+            <EditText
+                android:id="@+id/chat_thematic_channels_unicef"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="26sp"
+                android:textSize="20sp"
+                android:hint="Uni."
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chat_create_channels_description_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_create_channels_theme_layout_unicef"
+            android:backgroundTint="#808080"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp">
+
+            <EditText
+                android:id="@+id/chat_create_channels_edit_text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26sp"
+                android:textSize="20sp"
+                android:hint="Write Description"
+
+                />
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/chat_create_channels_save_channel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm And Create"
+            android:gravity="center"
+            android:backgroundTint="#808080"
+            android:layout_margin="16dp"
+            android:layout_below="@+id/chat_create_channels_description_layout"
+            android:textSize="20sp"
+            />
+
+
+    </RelativeLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/chat_create_channels_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Create Channel"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/chat_create_channels_back_button_layout"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        />-->
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
