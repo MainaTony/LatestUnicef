@@ -36,6 +36,10 @@ public class Verify extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(Verify.this, LoginMain.class);
+                startActivity(intent);
+
                 try {
                     if(!editTextTextEmailAddress.getText().toString().isEmpty()){
                         JSONObject params = new JSONObject();

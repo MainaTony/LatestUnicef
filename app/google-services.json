@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "444688140240",
+    "project_id": "chat-64c59",
+    "storage_bucket": "chat-64c59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444688140240:android:b93bc05fa71f2fa2e85bd5",
+        "android_client_info": {
+          "package_name": "com.example.mediawatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2PvjRqLz_9K1MK7d70wDi3HNd-MM4DJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

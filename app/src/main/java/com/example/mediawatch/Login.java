@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 //import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Login extends AppCompatActivity {
     private ProgressBar progressBar;
-
 
 
     @Override

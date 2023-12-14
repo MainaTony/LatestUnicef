@@ -1,5 +1,6 @@
 package com.example.mediawatch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,6 +18,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mediawatch.ApiResponse.ApiResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +32,9 @@ import java.io.IOException;
 
 public class SignInMain extends AppCompatActivity {
     String url = "http:// 192.168.137.1:8080/portal/auth/changePassword";
+    FirebaseAuth auth;
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,9 @@ public class SignInMain extends AppCompatActivity {
         Button signUpPageButton = findViewById(R.id.signUpPageButton);
         EditText editTextTextEmailAddress2 = findViewById(R.id.editTextTextEmailAddress2);
         EditText editTextTextPassword = findViewById(R.id.editTextTextPassword);
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference();
 
         signUpPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +113,20 @@ public class SignInMain extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest);
+
+    }
+
+    public void signup(String username, String password){
+
+        auth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+//                    Add the user to the database
+                    reference.child("Users").child(auth.getUid()).child("userName").setValue(username);
+                }
+            }
+        });
 
     }
 }
