@@ -22,55 +22,74 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
+
     List<String> userList;
     String username;
     Context mContext;
+
     FirebaseDatabase database;
     DatabaseReference reference;
 
-    public UsersAdapter(List<String> userList, String username, Context mContext) {
+    public UsersAdapter(List<String> userList, String userName, Context mContext) {
         this.userList = userList;
-        this.username = username;
+        this.username = userName;
         this.mContext = mContext;
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
     }
 
-    public UsersAdapter(List<String> userList){
-        this.userList = userList;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_card,parent,false);
+
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+
         reference.child("Users").child(userList.get(position)).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String otherName = dataSnapshot.child("Email").getValue().toString();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                final String otherName = snapshot.child("username").getValue().toString();
+//                String imageURL = snapshot.child("image").getValue().toString();
+
                 holder.textViewUsers.setText(otherName);
+
+//                if (imageURL.equals("null"))
+//                {
+//                    holder.imageViewUsers.setImageResource(R.drawable.account);
+//                }
+//                else
+//                {
+//                    holder.imageViewUsers.setImageResource(R.drawable.account);
+//                    //Picasso.get().load(imageURL).into(holder.imageViewUsers);
+//                }
+
                 holder.cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Intent intent = new Intent(mContext, ChatHome.class);
-//                        startActivity(intent);
-//                        startActivity();
+                        Intent intent = new Intent(mContext,MyChatActivity.class);
+                        intent.putExtra("username",username);
+                        intent.putExtra("otherName",otherName);
+                        mContext.startActivity(intent);
                     }
                 });
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
     }
 
     @Override
@@ -78,13 +97,18 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         return userList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewUsers;
-        private ImageView imageView;
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
+        private TextView textViewUsers;
+        private CircleImageView imageViewUsers;
         private CardView cardView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             textViewUsers = itemView.findViewById(R.id.textViewUsers);
+            imageViewUsers = itemView.findViewById(R.id.imageViewUsers);
+            cardView = itemView.findViewById(R.id.cardView);
         }
     }
 }

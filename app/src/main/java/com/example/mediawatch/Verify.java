@@ -37,23 +37,23 @@ public class Verify extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Verify.this, LoginMain.class);
+                Intent intent = new Intent(Verify.this, SignInMain.class);
                 startActivity(intent);
 
-                try {
-                    if(!editTextTextEmailAddress.getText().toString().isEmpty()){
-                        JSONObject params = new JSONObject();
-                        params.put("email", editTextTextEmailAddress.getText().toString());
-
-//                    makeJsonRequest("\"http://192.168.100.111:8080/portal/auth/authenticate\"", params);
-                        makeJsonRequest(url, params);
-                    } else{
-                        Toast.makeText(Verify.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    if(!editTextTextEmailAddress.getText().toString().isEmpty()){
+//                        JSONObject params = new JSONObject();
+//                        params.put("email", editTextTextEmailAddress.getText().toString());
+//
+////                    makeJsonRequest("\"http://192.168.100.111:8080/portal/auth/authenticate\"", params);
+//                        makeJsonRequest(url, params);
+//                    } else{
+//                        Toast.makeText(Verify.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
     }

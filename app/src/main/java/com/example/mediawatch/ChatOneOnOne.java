@@ -21,71 +21,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatOneOnOne extends AppCompatActivity {
-//    RecyclerView rv;
-//    FirebaseAuth auth;
-//    FirebaseUser user;
-//    DatabaseReference reference;
-//    FirebaseDatabase database;
-//    String email;
-//    List<String> list;
-//    UsersAdapter usersAdapter;
+    RecyclerView rv;
+    FirebaseAuth auth;
+    FirebaseUser user;
+    DatabaseReference reference;
+    FirebaseDatabase database;
+    String username;
+    List<String> list;
+    UsersAdapter usersAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_one_on_one);
-//        rv = findViewById(R.id.rv);
-//        rv.setLayoutManager(new LinearLayoutManager(this));
-//        database = FirebaseDatabase.getInstance();
-//        reference = database.getReference();
-//        list = new ArrayList<>();
-//        reference.child("Users").child(user.getEmail()).child("Email").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                email = dataSnapshot.getValue().toString();
-//                getUsers();
-//                usersAdapter = new UsersAdapter(list, email, ChatOneOnOne.this);
-//                rv.setAdapter(usersAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        rv = findViewById(R.id.rv);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<>();
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference();
+        reference.child("Users").child(user.getUid()).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                username = dataSnapshot.getValue().toString();
+                getUsers();
+                usersAdapter = new UsersAdapter(list, username, ChatOneOnOne.this);
+                rv.setAdapter(usersAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
-//    public void getUsers(){
-//        reference.child("Users").addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                String key = dataSnapshot.getKey();
-//
-//                if(!key.equals(user.getUid())){
-//                    list.add(key);
-//                    usersAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    public void getUsers(){
+        reference.child("Users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+
+                if(!key.equals(user.getUid())){
+                    list.add(key);
+                    usersAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

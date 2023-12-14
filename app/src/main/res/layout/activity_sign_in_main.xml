@@ -64,7 +64,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/emailSignUp"
             android:layout_height="wrap_content"
             android:layout_width="280dp"
             android:textSize="20sp"
@@ -72,7 +72,15 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/usernameSignUp"
+            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:textSize="20sp"
+            android:hint="Enter Username"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/passwordSignUp"
             android:layout_height="wrap_content"
             android:hint="@string/enter_password"
             android:layout_width="280dp"

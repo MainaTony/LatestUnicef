@@ -42,8 +42,11 @@ public class SignInMain extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_main);
 
         Button signUpPageButton = findViewById(R.id.signUpPageButton);
-        EditText editTextTextEmailAddress2 = findViewById(R.id.editTextTextEmailAddress2);
-        EditText editTextTextPassword = findViewById(R.id.editTextTextPassword);
+
+        EditText email = findViewById(R.id.emailSignUp);
+        EditText username = findViewById(R.id.usernameSignUp);
+        EditText password = findViewById(R.id.passwordSignUp);
+
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
@@ -51,22 +54,32 @@ public class SignInMain extends AppCompatActivity {
         signUpPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if(!editTextTextEmailAddress2.getText().toString().isEmpty() && !editTextTextPassword.getText().toString().isEmpty()){
-                        JSONObject params = new JSONObject();
-                        params.put("email", editTextTextEmailAddress2.getText().toString());
-                        params.put("password", editTextTextPassword.getText().toString());
+                String userEmail = email.getText().toString();
+                String userUsername = username.getText().toString();
+                String userPassword = password.getText().toString();
 
-//                    makeJsonRequest("\"http://192.168.100.111:8080/portal/auth/authenticate\"", params);
-                        makeJsonRequest(url, params);
-
-                    } else{
-                        Toast.makeText(SignInMain.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(!userEmail.equals("") && !userUsername.equals("") && !userPassword.equals("")){
+                    signup(userEmail, userUsername, userPassword);
+                } else {
+                    Toast.makeText(SignInMain.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
                 }
+
+//                try {
+//                    if(!editTextTextEmailAddress2.getText().toString().isEmpty() && !editTextTextPassword.getText().toString().isEmpty()){
+//                        JSONObject params = new JSONObject();
+//                        params.put("email", editTextTextEmailAddress2.getText().toString());
+//                        params.put("password", editTextTextPassword.getText().toString());
+//
+////                    makeJsonRequest("\"http://192.168.100.111:8080/portal/auth/authenticate\"", params);
+//                        makeJsonRequest(url, params);
+//
+//                    } else{
+//                        Toast.makeText(SignInMain.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
     }
@@ -116,14 +129,19 @@ public class SignInMain extends AppCompatActivity {
 
     }
 
-    public void signup(String username, String password){
+    public void signup(String email, String username, String password){
 
-        auth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
 //                    Add the user to the database
-                    reference.child("Users").child(auth.getUid()).child("userName").setValue(username);
+                    reference.child("Users").child(auth.getUid()).child("username").setValue(username);
+                    Toast.makeText(SignInMain.this, "User Registration Was a Success", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignInMain.this, LoginMain.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SignInMain.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             }
         });

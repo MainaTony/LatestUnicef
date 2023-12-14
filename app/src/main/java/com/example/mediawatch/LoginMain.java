@@ -63,7 +63,6 @@ public class LoginMain extends AppCompatActivity {
         password = findViewById(R.id.password);
         progressBar = findViewById(R.id.loginMainProgressBar);
 //        username = findViewById(R.id.username);
-
         auth = FirebaseAuth.getInstance();
 
         Button myLoginButton = findViewById(R.id.myLoginButton);
@@ -73,7 +72,8 @@ public class LoginMain extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 String mail = email.getText().toString();
                 String pass = password.getText().toString();
-                String  uname = username.getText().toString();
+//                String  uname = username.getText().toString();
+
                 signIn(mail, pass);
 //                Intent intent = new Intent(LoginMain.this, MainActivity.class);
 //                startActivity(intent);

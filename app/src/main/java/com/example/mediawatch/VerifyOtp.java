@@ -36,24 +36,26 @@ public class VerifyOtp extends AppCompatActivity {
         verifyOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(VerifyOtp.this, SignInMain.class);
+                startActivity(intent);
 
-                try {
-                    if(!editTextNumberPassword.getText().toString().isEmpty()){
-                        JSONObject params = new JSONObject();
-                        params.put("otp", editTextNumberPassword.getText().toString());
-
-//                    makeJsonRequest("\"http://192.168.100.111:8080/portal/auth/authenticate\"", params);
-                        makeJsonRequest(url, params);
-
-                    } else{
-                        Toast.makeText(VerifyOtp.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-//                Intent intent = new Intent(VerifyOtp.this, MainActivity.class);
-//                startActivity(intent);
+//                try {
+//                    if(!editTextNumberPassword.getText().toString().isEmpty()){
+//                        JSONObject params = new JSONObject();
+//                        params.put("otp", editTextNumberPassword.getText().toString());
+//
+////                    makeJsonRequest("\"http://192.168.100.111:8080/portal/auth/authenticate\"", params);
+//                        makeJsonRequest(url, params);
+//
+//                    } else{
+//                        Toast.makeText(VerifyOtp.this, "Sorry, error occurred", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+////                Intent intent = new Intent(VerifyOtp.this, MainActivity.class);
+////                startActivity(intent);
             }
         });
     }
