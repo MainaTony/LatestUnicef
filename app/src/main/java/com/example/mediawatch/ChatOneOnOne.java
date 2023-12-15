@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,6 +32,7 @@ public class ChatOneOnOne extends AppCompatActivity {
     String username;
     List<String> list;
     UsersAdapter usersAdapter;
+    ProgressBar userListProgressBar;
 
 
     @Override
@@ -36,7 +40,15 @@ public class ChatOneOnOne extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_one_on_one);
         rv = findViewById(R.id.rv);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        userListProgressBar = findViewById(R.id.userListProgressBar);
+        userListProgressBar.setVisibility(View.VISIBLE);
+
+//        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rv.setLayoutManager(layoutManager);
+
         list = new ArrayList<>();
 
         auth = FirebaseAuth.getInstance();
