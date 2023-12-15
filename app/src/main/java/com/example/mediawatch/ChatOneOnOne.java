@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -43,7 +44,6 @@ public class ChatOneOnOne extends AppCompatActivity {
 
         userListProgressBar = findViewById(R.id.userListProgressBar);
         userListProgressBar.setVisibility(View.VISIBLE);
-
 //        rv.setLayoutManager(new LinearLayoutManager(this));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -62,6 +62,7 @@ public class ChatOneOnOne extends AppCompatActivity {
                 getUsers();
                 usersAdapter = new UsersAdapter(list, username, ChatOneOnOne.this);
                 rv.setAdapter(usersAdapter);
+                userListProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
