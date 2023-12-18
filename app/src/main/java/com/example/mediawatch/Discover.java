@@ -4,28 +4,57 @@ import static com.example.mediawatch.MainActivity.getMediaWatchArray;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.pdf.PdfDocument;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
+import android.os.Environment;
+import android.print.PrintDocumentAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebResourceRequest;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.mediawatch.ApiResponse.MediaWatch;
 import com.example.mediawatch.ApiResponse.Project;
 import com.example.mediawatch.ApiResponse.ProjectsAdapter;
 import com.example.mediawatch.ApiResponse.TitleAdapter;
 import com.example.mediawatch.ApiResponse.UnicefAdapter;
+//import com.itextpdf.html2pdf.HtmlConverter;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
-public class Discover extends AppCompatActivity implements View.OnClickListener {
+//Save Document imports
+//import android.os.Environment;
+////import com.itextpdf.html2pdf.HtmlConverter;
+//
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import android.os.Bundle;
+//import androidx.appcompat.app.AppCompatActivity;
+//import com.itextpdf.html2pdf.HtmlConverter;
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
 
+
+
+
+public class Discover extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG2 = "HtmlToPdfActivity";
     private static final String TAG = "Discover";
     TextView category_discover_tv;
     RecyclerView category_discover_recycler;
@@ -38,12 +67,55 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
     TextView discover_category_unicef_online_media, discover_category_governance, discover_category_child_protection, discover_category_child_health, discover_category_unicef, discover_category_child_education, discover_category_others;
     ArrayList<MediaWatch> combined = new ArrayList<>();
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         TextView healthTxt;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
 //        healthTxt = findViewById(R.id.healthTxt);
+
+//        String fileName = "https://forexbee.co/chart-patterns-pdf/";
+//        String content = "Hello, this is an example file content.";
+
+//        saveFileToDownloads(fileName, content);
+
+        // Sample HTML content
+//        String htmlContent = "<html><body><h1>Hello, iTextPdf!</h1></body></html>";
+
+        // Specify the output path for the PDF file
+//        String outputPdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/output.pdf";
+
+        // Convert HTML to PDF
+//        convert(htmlContent, outputPdfPath);
+
+        // Convert HTML to PDF
+//        convertHtmlToPdf(htmlContent, outputPdfPath);
+
+//        convertUsingHtmlConverter(htmlContent, outputPdfPath);
+
+
+
+//        String url = "https://www.geeksforgeeks.org/";
+//            DownloadWebPage(url);
+
+        // Sample HTML content
+
+//
+//        // Specify the output path for the PDF file
+//        String outputPdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/output.pdf";
+//
+//        // Convert HTML to PDF
+//        convert(htmlContent, outputPdfPath);
+
+//        String outputPdfPath = getFilesDir().getAbsolutePath() + File.separator + "mine.pdf";
+//        String htmlContent = "<html><body><h1>Hello, World!</h1></body></html>";
+//        String htmlContent = "<html><body><h1>Hello, World!</h1></body></html>";
+//        String outputPdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/rivieler.pdf";
+//        convertUsingHtmlConverter(htmlContent, outputPdfPath);
+
 
 //        Media Type Section binding
         discover_print_media = findViewById(R.id.discover_print_media);
@@ -96,45 +168,47 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
         UnicefAdapter unicefAdapter = new UnicefAdapter(storedMediaWatchArray);
         discover_feed_recycler.setAdapter(unicefAdapter);
 
+
+
 //        Sorting tonality section
-        for (MediaWatch element : storedMediaWatchArray){
-            if (element.getTonality().equalsIgnoreCase("Positive")){
+        for (MediaWatch element : storedMediaWatchArray) {
+            if (element.getTonality().equalsIgnoreCase("Positive")) {
                 positive.add(element);
-            }else if (element.getTonality().equalsIgnoreCase("Negative")){
+            } else if (element.getTonality().equalsIgnoreCase("Negative")) {
                 negative.add(element);
-            } else if(element.getTonality().equalsIgnoreCase("Neutral")){
+            } else if (element.getTonality().equalsIgnoreCase("Neutral")) {
                 neutral.add(element);
             }
         }
 
         //        Sorting Media Type section
-        for (MediaWatch element : storedMediaWatchArray){
-            if (element.getMediatype().equalsIgnoreCase("Online Media")){
+        for (MediaWatch element : storedMediaWatchArray) {
+            if (element.getMediatype().equalsIgnoreCase("Online Media")) {
                 onlineMedia.add(element);
-            }else if (element.getMediatype().equalsIgnoreCase("Radio")){
+            } else if (element.getMediatype().equalsIgnoreCase("Radio")) {
                 radio.add(element);
-            } else if(element.getMediatype().equalsIgnoreCase("TV")){
+            } else if (element.getMediatype().equalsIgnoreCase("TV")) {
                 tv.add(element);
-            } else if(element.getMediatype().equalsIgnoreCase("Print Media")){
+            } else if (element.getMediatype().equalsIgnoreCase("Print Media")) {
                 printMedia.add(element);
             }
         }
 
         //        Sorting Category section
-        for (MediaWatch element : storedMediaWatchArray){
-            if (element.getCategory().equalsIgnoreCase("Others")){
+        for (MediaWatch element : storedMediaWatchArray) {
+            if (element.getCategory().equalsIgnoreCase("Others")) {
                 others.add(element);
-            }else if (element.getCategory().equalsIgnoreCase("Child Education")){
+            } else if (element.getCategory().equalsIgnoreCase("Child Education")) {
                 childEducation.add(element);
-            } else if(element.getCategory().equalsIgnoreCase("UNICEF")){
+            } else if (element.getCategory().equalsIgnoreCase("UNICEF")) {
                 unicef.add(element);
-            } else if(element.getCategory().equalsIgnoreCase("CHILD HEALTH")){
+            } else if (element.getCategory().equalsIgnoreCase("CHILD HEALTH")) {
                 childHealth.add(element);
-            } else if(element.getCategory().equalsIgnoreCase("CHILD PROTECTION")){
+            } else if (element.getCategory().equalsIgnoreCase("CHILD PROTECTION")) {
                 childProtection.add(element);
-            } else if(element.getCategory().equalsIgnoreCase("UNICEF ONLINE MEDIA")){
+            } else if (element.getCategory().equalsIgnoreCase("UNICEF ONLINE MEDIA")) {
                 unicefOnlineMedia.add(element);
-            } else if(element.getCategory().equalsIgnoreCase("GOVERNANCE")){
+            } else if (element.getCategory().equalsIgnoreCase("GOVERNANCE")) {
                 governance.add(element);
             }
         }
@@ -207,8 +281,6 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                discover_feed_recycler.setAdapter(unicefAdapter);
 //            }
 //        });
-
-
 
 
 //        Media Type On Click Listeners
@@ -305,22 +377,294 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
         };
     }
 
-    public static void displayResult(){
+    public static void displayResult() {
         System.out.print("Final result");
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.discover_category_unicef_online_media:
 //                Toast.makeText(Discover.this, "TV = "+positive.size(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Unicef Online Media Clicked", Toast.LENGTH_SHORT).show();
                 break;
-
-
             default:
-
                 break;
         }
     }
+//    Download Implementation
+//public static void convert(String htmlContent, String outputPdfPath) {
+//    try {
+//        // Create a File object for the output PDF
+//        File pdfFile = new File(outputPdfPath);
+//
+//        // Create output stream for the PDF
+//        FileOutputStream fos = new FileOutputStream(pdfFile);
+//
+//        // Convert HTML to PDF
+//        HtmlConverter.convertToPdf(htmlContent, fos);
+//
+//        // Close the output stream
+//        fos.close();
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//    }
+
+//    public static void saveFileToDownloads(String fileName, String content) {
+//        // Check if external storage is available
+//        if (isExternalStorageWritable()) {
+//            // Get the Downloads directory
+//            File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//
+//            // Create a File object for the new file in the Downloads directory
+//            File file = new File(downloadsDir, fileName);
+//
+//            try {
+//                // Create FileWriter and write content to the file
+//                FileWriter writer = new FileWriter(file);
+//                writer.write(content);
+//                writer.flush();
+//                writer.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    private static boolean isExternalStorageWritable() {
+//        String state = Environment.getExternalStorageState();
+//        return Environment.MEDIA_MOUNTED.equals(state);
+//    }
+
+//    public static void convert(String htmlContent, String outputPdfPath) {
+//        try {
+//            // Create a File object for the output PDF
+//            File pdfFile = new File(outputPdfPath);
+//
+//            // Create output stream for the PDF
+//            FileOutputStream fos = new FileOutputStream(pdfFile);
+//
+//            // Convert HTML to PDF
+//            HtmlConverter.convertToPdf(htmlContent, fos);
+//
+//            // Close the output stream
+//            fos.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void convertUsingHtmlConverter(String htmlContent, String outputPdfPath) {
+//        try {
+//            HtmlConverter.convertToPdf(htmlContent, new FileOutputStream(outputPdfPath));
+//            System.out.println("PDF created successfully at: " + outputPdfPath);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    Download File in Java
+//public static void DownloadWebPage(String webpage)
+//{
+//    try {
+//        // Create URL object
+//        URL url = new URL(webpage);
+//        BufferedReader readr =
+//                new BufferedReader(new InputStreamReader(url.openStream()));
+//
+//        // Enter filename in which you want to download
+//        BufferedWriter writer =
+//                new BufferedWriter(new FileWriter("Download.html"));
+//
+//        // read each line from stream till end
+//        String line;
+//        while ((line = readr.readLine()) != null) {
+//            writer.write(line);
+//        }
+//
+//        readr.close();
+//        writer.close();
+//        System.out.println("Successfully Downloaded.");
+//    }
+//
+//    // Exceptions
+//    catch (MalformedURLException mue) {
+//        System.out.println("Malformed URL Exception raised");
+//    }
+//    catch (IOException ie) {
+//        System.out.println("IOException raised");
+//    }
+//}
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private class DownloadHtmlAndConvertToPdfTask extends AsyncTask<String, Void, String> {
+//
+//        @Override
+//        protected String doInBackground(String... urls) {
+//            try {
+//                // Download HTML content using Jsoup
+//                String htmlUrl = urls[0];
+//                Document document = Jsoup.connect(htmlUrl).get();
+//
+//                // Convert HTML to PDF
+//                return convertHtmlToPdf(document);
+//            } catch (IOException e) {
+//                Log.e(TAG, "Error downloading or converting HTML to PDF", e);
+//                return null;
+//            }
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String pdfFilePath) {
+//            super.onPostExecute(pdfFilePath);
+//
+//            if (pdfFilePath != null) {
+//                // PDF conversion successful, you can now use the PDF file
+//                Log.d(TAG, "PDF file created: " + pdfFilePath);
+//            } else {
+//                Log.e(TAG, "Error creating PDF file");
+//            }
+//        }
+//    }
+//
+//
+//        private String convertHtmlToPdf(Document document) {
+//            // Create a WebView to render the HTML content
+//            WebView webView = new WebView(Discover.this);
+//            webView.setWebViewClient(new WebViewClient() {
+//                @Override
+//                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//                    // Handle URL loading in the WebView
+//                    return false;
+//                }
+//
+//                @Override
+//                public void onPageFinished(WebView view, String url) {
+//                    // When the page finishes loading, create a PDF document
+//                    createPdfDocument(view);
+//                }
+//            });
+//
+//            // Load the HTML content into the WebView
+//            String htmlContent = document.html();
+//            webView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8", null);
+//
+//            return null;
+//        }
+//
+//        private void createPdfDocument(final WebView webView) {
+//            // Create a PDF document
+//            PdfDocument pdfDocument = new PdfDocument();
+//            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(webView.getWidth(), webView.getHeight(), 1).create();
+//            PdfDocument.Page page = pdfDocument.startPage(pageInfo);
+//
+//            // Draw the WebView content onto the PDF page
+//            Canvas canvas = page.getCanvas();
+//            webView.draw(canvas);
+//
+//            pdfDocument.finishPage(page);
+//
+//            // Save the PDF document to a file
+//            savePdfDocument(pdfDocument);
+//
+//            // Close the PDF document
+//            pdfDocument.close();
+//        }
+//
+//        private void savePdfDocument(final PdfDocument pdfDocument) {
+//            // Save the PDF document to a file
+//            String fileName = "output.pdf";
+//            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
+//
+//            try (FileOutputStream outputStream = new FileOutputStream(file)) {
+//                pdfDocument.writeTo(outputStream);
+//
+//                // Notify the system that the file has been created
+//                MediaScannerConnection.scanFile(Discover.this,
+//                        new String[]{file.getAbsolutePath()},
+//                        null,
+//                        null);
+//
+//            } catch (IOException e) {
+//                Log.e(TAG, "Error saving PDF document", e);
+//            }
+
+
+
+
+
+

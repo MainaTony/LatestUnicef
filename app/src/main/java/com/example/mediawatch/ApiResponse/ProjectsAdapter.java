@@ -84,7 +84,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
             title.setText(mediaWatch.title);
             date.setText(mediaWatch.date);
             category.setText(mediaWatch.category);
-            url.setText(mediaWatch.storyurl);
+//            url.setText(mediaWatch.storyurl);
         }
 
         @Override
