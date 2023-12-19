@@ -5,15 +5,29 @@ import java.util.List;
 public class Group {
     private String groupId;
     private String groupName;
+
+    private String adminId; // Add adminId field
     private List<String> members;
 
     public Group() {
     }
-    public Group(String groupId, String groupName, List<String> members) {
+    public Group(String groupId, String groupName, String adminId, List<String> members) {
         this.groupId = groupId;
         this.groupName = groupName;
+        this.adminId = adminId;
         this.members = members;
+
     }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
+    }
+
+
 
     public String getGroupId() {
         return groupId;

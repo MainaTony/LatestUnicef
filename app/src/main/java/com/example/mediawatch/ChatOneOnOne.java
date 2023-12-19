@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -37,12 +39,23 @@ public class ChatOneOnOne extends AppCompatActivity {
     UsersAdapter usersAdapter;
     ProgressBar userListProgressBar;
 
+    ImageView chat_room_add_img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_one_on_one);
         rv = findViewById(R.id.rv);
+        chat_room_add_img = findViewById(R.id.chat_room_add_img);
+        chat_room_add_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatOneOnOne.this, ChatCreateChannel.class);
+                startActivity(intent);
+
+            }
+        });
 
         userListProgressBar = findViewById(R.id.userListProgressBar);
         userListProgressBar.setVisibility(View.VISIBLE);
