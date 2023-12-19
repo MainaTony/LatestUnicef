@@ -19,8 +19,9 @@
 
         <ImageView
             android:id="@+id/imageViewBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#D5D3D3"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:padding="7dp"
