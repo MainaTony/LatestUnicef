@@ -7,15 +7,15 @@ public class Group {
     private String groupName;
 
     private String adminId; // Add adminId field
-    private List<String> members;
+//    private List<String> members;
 
     public Group() {
     }
-    public Group(String groupId, String groupName, String adminId, List<String> members) {
+    public Group(String groupId, String groupName, String adminId) {
         this.groupId = groupId;
         this.groupName = groupName;
         this.adminId = adminId;
-        this.members = members;
+
 
     }
 
@@ -45,11 +45,11 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public List<String> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<String> members) {
-        this.members = members;
-    }
+//    public List<String> getMembers() {
+//        return members;
+//    }
+//
+//    public void setMembers(List<String> members) {
+//        this.members = members;
+//    }
 }

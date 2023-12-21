@@ -29,7 +29,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     List<String> userList;
     String username;
     Context mContext;
-
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -37,7 +36,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         this.userList = userList;
         this.username = userName;
         this.mContext = mContext;
-
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
     }
@@ -46,7 +44,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_card,parent,false);
-
         return new ViewHolder(view);
     }
 
