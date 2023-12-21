@@ -1,13 +1,10 @@
 package com.example.mediawatch;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +21,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
+public class UsersAdapterGroup extends RecyclerView.Adapter<UsersAdapterGroup.ViewHolder> {
 
     List<String> userList;
     String username;
@@ -32,7 +29,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     FirebaseDatabase database;
     DatabaseReference reference;
 
-    public UsersAdapter(List<String> userList, String userName, Context mContext) {
+    public UsersAdapterGroup(List<String> userList, String userName, Context mContext) {
         this.userList = userList;
         this.username = userName;
         this.mContext = mContext;
@@ -43,7 +40,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_card, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_add_group, parent,false);
         return new ViewHolder(view);
     }
 

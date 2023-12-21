@@ -98,11 +98,14 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                 case R.id.chat:
 
 //                    Intent chatIntent = new Intent(MainActivity.this, ChatHome.class);
-                    Intent chatIntent = new Intent(MainActivity.this, ChatOneOnOne.class);
+//                    Intent chatIntent = new Intent(MainActivity.this, ChatOneOnOne.class);
 //                    intent.putExtra("title", mediaWatch.getTitle());
 //                    intent.putExtra("category", mediaWatch.getCategory());
 //                    intent.putExtra("summary", mediaWatch.getSummary());
-                    startActivity(chatIntent);
+//                    startActivity(chatIntent);
+
+                    Intent allChannelsIntent = new Intent(MainActivity.this, ChatAllChannels.class);
+                    startActivity(allChannelsIntent);
 
                     break;
                 case R.id.download:

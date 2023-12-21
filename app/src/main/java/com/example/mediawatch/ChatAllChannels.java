@@ -1,6 +1,7 @@
 package com.example.mediawatch;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import com.example.mediawatch.ApiResponse.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +29,10 @@ public class ChatAllChannels extends AppCompatActivity {
     Button chat_all_channels_create_channel;
     ImageView chat_all_channels_back_button;
 
-    UserGroupAdapter userGroupAdapter;
-    private UsersAdapter usersAdapter;
+//    UserGroupAdapter userGroupAdapter;
+//    private UsersAdapter usersAdapter;
+
+    UsersAdapter usersAdapter;
     private List<User> users;
 
     private List<String> selectedUsers;
@@ -41,7 +45,7 @@ public class ChatAllChannels extends AppCompatActivity {
     private DatabaseReference usersRef;
 
 //    Other
-FirebaseAuth auth;
+    FirebaseAuth auth;
     FirebaseUser user;
     DatabaseReference reference;
     FirebaseDatabase database;
@@ -54,7 +58,7 @@ FirebaseAuth auth;
         setContentView(R.layout.activity_chat_all_channels);
         chat_all_channels_create_channel = findViewById(R.id.chat_all_channels_create_channel);
         chat_all_channels_back_button = findViewById(R.id.chat_all_channels_back_button);
-        rv2 = findViewById(R.id.rv2);
+        rv = findViewById(R.id.rv);
 //        rv = findViewById(R.id.rv);
 
 //        list = new ArrayList<>();
@@ -64,28 +68,52 @@ FirebaseAuth auth;
 //        database = FirebaseDatabase.getInstance();
 //        reference = database.getReference();
 
-        groupsRef = FirebaseDatabase.getInstance().getReference("unicef");
-        usersRef = FirebaseDatabase.getInstance().getReference("Users");
+//        groupsRef = FirebaseDatabase.getInstance().getReference("unicef");
+//        usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 //        rv.setLayoutManager(layoutManager);
 
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rv2.setLayoutManager(layoutManager);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        rv.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rv.setLayoutManager(layoutManager);
+
+        list = new ArrayList<>();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference();
+
+        reference.child("Users").child(user.getUid()).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                username = dataSnapshot.getValue().toString();
+                getUsers();
+                usersAdapter = new UsersAdapter(list, username, ChatAllChannels.this);
+                rv.setAdapter(usersAdapter);
+//                userListProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 //      Initialize RecyclerView adapter with an empty list
-        users = new ArrayList<>();
+//        users = new ArrayList<>();
 //        userGroupAdapter = new UserGroupAdapter(users);
-        userGroupAdapter = new UserGroupAdapter(users);
-        rv2.setAdapter(userGroupAdapter);
+//        userGroupAdapter = new UserGroupAdapter(users);
+//        rv2.setAdapter(userGroupAdapter);
 
         // Set the group ID (you should obtain this from the selected group)
-        groupId = "kzWQuhH2vSVRkrNpvaISU28NTqQ2";
+//        groupId = "kzWQuhH2vSVRkrNpvaISU28NTqQ2";
 
         // Load users from the group
-        loadGroupMembers();
+//        loadGroupMembers();
 
 
         chat_all_channels_back_button.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +182,42 @@ FirebaseAuth auth;
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle errors./gradlew build
+            }
+        });
+    }
+
+
+//Get user from database to display to the
+    public void getUsers(){
+        reference.child("Users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+
+                if(!key.equals(user.getUid())){
+                    list.add(key);
+                    usersAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

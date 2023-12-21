@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,16 +30,16 @@ import java.util.List;
 //import com.aspose.pdf.HtmlLoadOptions;
 
 public class ChatOneOnOne extends AppCompatActivity {
-    RecyclerView rv;
+    RecyclerView rv2;
     FirebaseAuth auth;
     FirebaseUser user;
     DatabaseReference reference;
     FirebaseDatabase database;
     String username;
     List<String> list;
-    UsersAdapter usersAdapter;
+//    UsersAdapter usersAdapter;
+    UsersAdapterGroup usersAdapterGroup;
     ProgressBar userListProgressBar;
-
     ImageView chat_room_add_img;
 
 
@@ -46,14 +47,13 @@ public class ChatOneOnOne extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_one_on_one);
-        rv = findViewById(R.id.rv);
+        rv2 = findViewById(R.id.rv2);
         chat_room_add_img = findViewById(R.id.chat_room_add_img);
         chat_room_add_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChatOneOnOne.this, ChatCreateChannel.class);
                 startActivity(intent);
-
             }
         });
 
@@ -61,8 +61,8 @@ public class ChatOneOnOne extends AppCompatActivity {
         userListProgressBar.setVisibility(View.VISIBLE);
 //        rv.setLayoutManager(new LinearLayoutManager(this));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        rv.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        rv2.setLayoutManager(layoutManager);
 
         list = new ArrayList<>();
 
@@ -75,8 +75,8 @@ public class ChatOneOnOne extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 username = dataSnapshot.getValue().toString();
                 getUsers();
-                usersAdapter = new UsersAdapter(list, username, ChatOneOnOne.this);
-                rv.setAdapter(usersAdapter);
+                usersAdapterGroup = new UsersAdapterGroup(list, username, ChatOneOnOne.this);
+                rv2.setAdapter(usersAdapterGroup);
                 userListProgressBar.setVisibility(View.INVISIBLE);
             }
 
@@ -94,7 +94,7 @@ public class ChatOneOnOne extends AppCompatActivity {
 
                 if(!key.equals(user.getUid())){
                     list.add(key);
-                    usersAdapter.notifyDataSetChanged();
+                    usersAdapterGroup.notifyDataSetChanged();
                 }
             }
 

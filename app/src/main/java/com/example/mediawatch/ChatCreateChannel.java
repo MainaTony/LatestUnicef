@@ -157,8 +157,11 @@ private void createGroup() {
         DatabaseReference newMessageRef = messagesRef.push();
         creationMessage.setMessageId(newMessageRef.getKey());
         newMessageRef.setValue(creationMessage);
-
+        Toast.makeText(ChatCreateChannel.this, "Group : " +groupName+ "Created Succesfully", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ChatCreateChannel.this, ChatAllChannels.class);
+        startActivity(intent);
         finish(); // Finish the activity after creating the group
+
     }
 }
 
