@@ -5,7 +5,6 @@ import java.util.List;
 public class Group {
     private String groupId;
     private String groupName;
-
     private String adminId; // Add adminId field
 //    private List<String> members;
 
