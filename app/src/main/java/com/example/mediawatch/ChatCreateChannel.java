@@ -23,21 +23,26 @@ import java.util.List;
 
 public class ChatCreateChannel extends AppCompatActivity {
     ImageView chat_create_channels_back_button;
-    EditText chat_create_channels_edit_text;
-    Button chat_create_channels_save_channel;
-    private DatabaseReference groupsRef;
+    EditText groupNameEditText ;
+    Button createGroupButton;
+//    private DatabaseReference groupsRef;
+    private DatabaseReference databaseReference;
+    private FirebaseAuth auth;
     private DatabaseReference usersRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_create_channel);
-        chat_create_channels_back_button = findViewById(R.id.chat_create_channels_back_button);
-        chat_create_channels_edit_text = findViewById(R.id.chat_create_channels_edit_text);
-        chat_create_channels_save_channel = findViewById(R.id.chat_create_channels_save_channel);
 
-        groupsRef = FirebaseDatabase.getInstance().getReference("unicef");
-        usersRef = FirebaseDatabase.getInstance().getReference("Users");
+        chat_create_channels_back_button = findViewById(R.id.chat_create_channels_back_button);
+        groupNameEditText  = findViewById(R.id.chat_create_channels_edit_text);
+        createGroupButton  = findViewById(R.id.chat_create_channels_save_channel);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+//        databaseReference = FirebaseDatabase.getInstance().getReference("unicef");
+//        usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
 //        List<String> members = new ArrayList<>();
 
@@ -51,16 +56,17 @@ public class ChatCreateChannel extends AppCompatActivity {
         // Create a new group with the current user as the admin
 
 
-        chat_create_channels_save_channel.setOnClickListener(new View.OnClickListener() {
+        createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String groupName = chat_create_channels_edit_text.getText().toString();
-                if(!groupName.equals("")){
-//                    createGroup(groupName, members);
-                    Toast.makeText(ChatCreateChannel.this, "Group : " +groupName+ "Created Succesfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ChatCreateChannel.this, ChatAllChannels.class);
-                    startActivity(intent);
-                }
+//                String groupName = groupNameEditText .getText().toString();
+                createGroup();
+//                if(!groupName.equals("")){
+////                    createGroup(groupName, members);
+//                    Toast.makeText(ChatCreateChannel.this, "Group : " +groupName+ "Created Succesfully", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(ChatCreateChannel.this, ChatAllChannels.class);
+//                    startActivity(intent);
+//                }
             }
         });
         chat_create_channels_back_button.setOnClickListener(new View.OnClickListener() {
@@ -120,5 +126,40 @@ public class ChatCreateChannel extends AppCompatActivity {
 //                });
 //    }
 
+//    Second Logic //CREATE GROUP
+private void createGroup() {
+    String groupName = groupNameEditText.getText().toString().trim();
+
+    if (!groupName.isEmpty()) {
+        DatabaseReference groupsRef = databaseReference.child("groups");
+        DatabaseReference membersRef = databaseReference.child("members");
+        // Create a new group
+        Group group = new Group();
+        group.setGroupName(groupName);
+        group.setAdminId(auth.getCurrentUser().getUid());
+        DatabaseReference newGroupRef = groupsRef.push();
+        group.setGroupId(newGroupRef.getKey());
+        newGroupRef.setValue(group);
+
+        // Add the admin as a member
+        Member adminMember = new Member();
+        adminMember.setMemberId(auth.getCurrentUser().getUid());
+        adminMember.setMemberName("Joram"); // You may want to fetch the admin's name from the database
+        membersRef.child(group.getGroupId()).child(adminMember.getMemberId()).setValue(adminMember);
+
+        // You may add logic here to add selected members from the RecyclerView to the group
+
+        // Create a new message for group creation
+        Message creationMessage = new Message();
+        creationMessage.setSenderId(adminMember.getMemberId());
+        creationMessage.setContent("Group created by " + adminMember.getMemberName());
+        DatabaseReference messagesRef = databaseReference.child("messages").child(group.getGroupId());
+        DatabaseReference newMessageRef = messagesRef.push();
+        creationMessage.setMessageId(newMessageRef.getKey());
+        newMessageRef.setValue(creationMessage);
+
+        finish(); // Finish the activity after creating the group
+    }
+}
 
 }
