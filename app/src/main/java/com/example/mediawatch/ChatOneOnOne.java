@@ -30,16 +30,16 @@ import java.util.List;
 //import com.aspose.pdf.HtmlLoadOptions;
 
 public class ChatOneOnOne extends AppCompatActivity {
-    RecyclerView rv2;
+    RecyclerView rv;
     FirebaseAuth auth;
     FirebaseUser user;
     DatabaseReference reference;
     FirebaseDatabase database;
     String username;
     List<String> list;
-//    UsersAdapter usersAdapter;
-    UsersAdapterGroup usersAdapterGroup;
+    UsersAdapter usersAdapter;
     ProgressBar userListProgressBar;
+
     ImageView chat_room_add_img;
 
 
@@ -47,7 +47,7 @@ public class ChatOneOnOne extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_one_on_one);
-        rv2 = findViewById(R.id.rv2);
+        rv = findViewById(R.id.rv);
         chat_room_add_img = findViewById(R.id.chat_room_add_img);
         chat_room_add_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +61,8 @@ public class ChatOneOnOne extends AppCompatActivity {
         userListProgressBar.setVisibility(View.VISIBLE);
 //        rv.setLayoutManager(new LinearLayoutManager(this));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rv2.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rv.setLayoutManager(layoutManager);
 
         list = new ArrayList<>();
 
@@ -75,8 +75,8 @@ public class ChatOneOnOne extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 username = dataSnapshot.getValue().toString();
                 getUsers();
-                usersAdapterGroup = new UsersAdapterGroup(list, username, ChatOneOnOne.this);
-                rv2.setAdapter(usersAdapterGroup);
+                usersAdapter = new UsersAdapter(list, username, ChatOneOnOne.this);
+                rv.setAdapter(usersAdapter);
                 userListProgressBar.setVisibility(View.INVISIBLE);
             }
 
@@ -94,7 +94,7 @@ public class ChatOneOnOne extends AppCompatActivity {
 
                 if(!key.equals(user.getUid())){
                     list.add(key);
-                    usersAdapterGroup.notifyDataSetChanged();
+                    usersAdapter.notifyDataSetChanged();
                 }
             }
 

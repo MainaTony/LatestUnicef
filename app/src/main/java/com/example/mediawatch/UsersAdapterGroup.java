@@ -69,10 +69,10 @@ public class UsersAdapterGroup extends RecyclerView.Adapter<UsersAdapterGroup.Vi
                 holder.cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(mContext,MyChatActivity.class);
-                        intent.putExtra("username",username);
-                        intent.putExtra("otherName",otherName);
-                        mContext.startActivity(intent);
+//                        Intent intent = new Intent(mContext,MyChatActivity.class);
+//                        intent.putExtra("username",username);
+//                        intent.putExtra("otherName",otherName);
+//                        mContext.startActivity(intent);
                     }
                 });
 
@@ -100,9 +100,9 @@ public class UsersAdapterGroup extends RecyclerView.Adapter<UsersAdapterGroup.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewUsers = itemView.findViewById(R.id.textViewUsers);
-            imageViewUsers = itemView.findViewById(R.id.imageViewUsers);
-            cardView = itemView.findViewById(R.id.cardView);
+            textViewUsers = itemView.findViewById(R.id.textViewUsersGroup);
+            imageViewUsers = itemView.findViewById(R.id.imageViewUsersGroup);
+            cardView = itemView.findViewById(R.id.cardViewGroup);
         }
     }
 }

@@ -32,14 +32,16 @@ public class ChatAllChannels extends AppCompatActivity {
 //    UserGroupAdapter userGroupAdapter;
 //    private UsersAdapter usersAdapter;
 
-    UsersAdapter usersAdapter;
+//    UsersAdapter usersAdapter;
+
+    UsersAdapterGroup usersAdapterGroup;
     private List<User> users;
 
     private List<String> selectedUsers;
 
     private String groupId;
     RecyclerView rv2;
-    RecyclerView rv;
+//    RecyclerView rv;
 
     private DatabaseReference groupsRef;
     private DatabaseReference usersRef;
@@ -58,7 +60,7 @@ public class ChatAllChannels extends AppCompatActivity {
         setContentView(R.layout.activity_chat_all_channels);
         chat_all_channels_create_channel = findViewById(R.id.chat_all_channels_create_channel);
         chat_all_channels_back_button = findViewById(R.id.chat_all_channels_back_button);
-        rv = findViewById(R.id.rv);
+        rv2 = findViewById(R.id.rv2);
 //        rv = findViewById(R.id.rv);
 
 //        list = new ArrayList<>();
@@ -77,8 +79,8 @@ public class ChatAllChannels extends AppCompatActivity {
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 //        rv.setLayoutManager(layoutManager);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        rv.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        rv2.setLayoutManager(layoutManager);
 
         list = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
@@ -91,8 +93,8 @@ public class ChatAllChannels extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 username = dataSnapshot.getValue().toString();
                 getUsers();
-                usersAdapter = new UsersAdapter(list, username, ChatAllChannels.this);
-                rv.setAdapter(usersAdapter);
+                usersAdapterGroup = new UsersAdapterGroup(list, username, ChatAllChannels.this);
+                rv2.setAdapter(usersAdapterGroup);
 //                userListProgressBar.setVisibility(View.INVISIBLE);
             }
 
@@ -176,7 +178,7 @@ public class ChatAllChannels extends AppCompatActivity {
 
                 if (user != null) {
                     users.add(user);
-                    usersAdapter.notifyDataSetChanged();
+                    usersAdapterGroup.notifyDataSetChanged();
                 }
             }
             @Override
@@ -196,7 +198,7 @@ public class ChatAllChannels extends AppCompatActivity {
 
                 if(!key.equals(user.getUid())){
                     list.add(key);
-                    usersAdapter.notifyDataSetChanged();
+                    usersAdapterGroup.notifyDataSetChanged();
                 }
             }
 
