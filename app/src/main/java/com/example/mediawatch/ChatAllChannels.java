@@ -92,6 +92,8 @@ public class ChatAllChannels extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 username = dataSnapshot.getValue().toString();
+                String fetchedGroupId = getIntent().getStringExtra("fetchedGroupId");
+
                 getUsers();
                 usersAdapterGroup = new UsersAdapterGroup(list, username, ChatAllChannels.this);
                 rv2.setAdapter(usersAdapterGroup);

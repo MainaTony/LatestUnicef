@@ -2,6 +2,7 @@ package com.example.mediawatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,16 +25,20 @@ import java.util.List;
 public class ChatCreateChannel extends AppCompatActivity {
     ImageView chat_create_channels_back_button;
     EditText groupNameEditText ;
+
+    final String TAG = "Error";
     Button createGroupButton;
 //    private DatabaseReference groupsRef;
     private DatabaseReference databaseReference;
     private FirebaseAuth auth;
     private DatabaseReference usersRef;
+    UsersAdapterGroup usersAdapterGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_create_channel);
+
 
         chat_create_channels_back_button = findViewById(R.id.chat_create_channels_back_button);
         groupNameEditText  = findViewById(R.id.chat_create_channels_edit_text);
@@ -133,6 +138,7 @@ private void createGroup() {
     if (!groupName.isEmpty()) {
         DatabaseReference groupsRef = databaseReference.child("groups");
         DatabaseReference membersRef = databaseReference.child("members");
+
         // Create a new group
         Group group = new Group();
         group.setGroupName(groupName);
@@ -144,7 +150,7 @@ private void createGroup() {
         // Add the admin as a member
         Member adminMember = new Member();
         adminMember.setMemberId(auth.getCurrentUser().getUid());
-        adminMember.setMemberName("Joram"); // You may want to fetch the admin's name from the database
+        adminMember.setMemberName("Admin"); // You may want to fetch the admin's name from the database
         membersRef.child(group.getGroupId()).child(adminMember.getMemberId()).setValue(adminMember);
 
         // You may add logic here to add selected members from the RecyclerView to the group
@@ -157,11 +163,8 @@ private void createGroup() {
         DatabaseReference newMessageRef = messagesRef.push();
         creationMessage.setMessageId(newMessageRef.getKey());
         newMessageRef.setValue(creationMessage);
-        Toast.makeText(ChatCreateChannel.this, "Group : " +groupName+ "Created Succesfully", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(ChatCreateChannel.this, ChatAllChannels.class);
-        startActivity(intent);
-        finish(); // Finish the activity after creating the group
 
+        finish(); // Finish the activity after creating the group
     }
 }
 
