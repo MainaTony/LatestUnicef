@@ -13,7 +13,8 @@
 
         <item name="android:textColor">#2E2D2D</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+<!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
     </style>
 
