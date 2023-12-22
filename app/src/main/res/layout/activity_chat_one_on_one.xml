@@ -83,13 +83,14 @@
             android:textSize="18sp"
             android:layout_height="48dp"
             android:layout_toStartOf="@+id/chat_room_add_img"
+            android:background="@drawable/edit_search"
             android:hint="Search"/>
 
         <ImageView
             android:id="@+id/chat_room_add_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/chat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/add"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 

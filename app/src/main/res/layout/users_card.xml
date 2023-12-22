@@ -6,7 +6,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="4dp"
+    android:backgroundTint="#ECECEC"
     app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +27,7 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:src="@drawable/account2"
+                android:src="@drawable/useraccount"
                  />
 
             <TextView
@@ -38,6 +39,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="#000"
                 android:textStyle="bold"
+                android:layout_marginTop="80dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="16sp" />
