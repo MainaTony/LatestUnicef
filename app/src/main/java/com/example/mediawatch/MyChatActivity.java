@@ -79,6 +79,7 @@ public class MyChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MyChatActivity.this, ChatOneOnOne.class);
                 startActivity(i);
+                finish();
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {

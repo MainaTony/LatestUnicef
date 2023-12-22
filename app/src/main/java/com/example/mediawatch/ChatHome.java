@@ -21,6 +21,7 @@ public class ChatHome extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ChatHome.this, ChatAllChannels.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

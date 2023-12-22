@@ -66,6 +66,7 @@ public class ChatCreateChannel extends AppCompatActivity {
             public void onClick(View v) {
 //                String groupName = groupNameEditText .getText().toString();
                 createGroup();
+                finish();
 //                if(!groupName.equals("")){
 ////                    createGroup(groupName, members);
 //                    Toast.makeText(ChatCreateChannel.this, "Group : " +groupName+ "Created Succesfully", Toast.LENGTH_SHORT).show();

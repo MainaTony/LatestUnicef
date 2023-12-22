@@ -54,6 +54,7 @@ public class ChatOneOnOne extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ChatOneOnOne.this, ChatCreateChannel.class);
                 startActivity(intent);
+                finish();
             }
         });
 
