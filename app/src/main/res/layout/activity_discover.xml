@@ -79,6 +79,7 @@
 
         <!-- Add your horizontally scrollable content here -->
         <LinearLayout
+            android:id="@+id/thematicLinearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -88,6 +89,7 @@
                 android:id="@+id/discover_category_unicef_online_media"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="UNICEF ONLINE MEDIA"
                 android:textSize="20sp" />
 
@@ -96,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GOVERNANCE"
+                android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp" />
 
@@ -105,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:text="CHILD PROTECTION"
                 android:layout_marginLeft="20dp"
+                android:textStyle="bold"
                 android:textSize="20sp" />
 
             <TextView
@@ -112,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CHILD HEALTH"
+                android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                />
@@ -121,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UNICEF"
+                android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
@@ -130,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CHILD EDUCATION"
+                android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
@@ -144,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OTHERS"
+                android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
@@ -178,6 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="All"
+                android:textStyle="bold"
                 android:layout_marginLeft="16dp"
                 android:textSize="20sp" />
 
@@ -187,6 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Online Media"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -196,6 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Radio"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -205,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Tv"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -214,6 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Print Media"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -234,6 +247,7 @@
 
         <!-- Add your horizontally scrollable content here -->
         <LinearLayout
+            android:id="@+id/tonalityLinearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -254,6 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="All"
+                android:textStyle="bold"
                 android:layout_marginLeft="16dp"
                 android:textSize="20sp" />
 
@@ -263,6 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Positive"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -272,6 +288,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Neutral"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -281,6 +298,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:text="Negative"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 

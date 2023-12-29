@@ -3,6 +3,7 @@ package com.example.mediawatch;
 import static com.example.mediawatch.MainActivity.getMediaWatchArray;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.graphics.Color;
@@ -66,6 +67,8 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 
     TextView discover_category_unicef_online_media, discover_category_governance, discover_category_child_protection, discover_category_child_health, discover_category_unicef, discover_category_child_education, discover_category_others;
     ArrayList<MediaWatch> combined = new ArrayList<>();
+    HorizontalScrollView tonalityHorizontalScrollView;
+    LinearLayout tonalityLinearLayout, thematicLinearLayout;
 
 
 
@@ -123,6 +126,12 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
         discover_radio = findViewById(R.id.discover_radio);
         discover_online_media = findViewById(R.id.discover_online_media);
         discover_media_type_all = findViewById(R.id.discover_media_type_all);
+        tonalityLinearLayout = findViewById(R.id.tonalityLinearLayout);
+        thematicLinearLayout = findViewById(R.id.thematicLinearLayout);
+
+
+//        Horizontal Scroll views
+        tonalityHorizontalScrollView = findViewById(R.id.tonalityHorizontalScrollView);
 
 
 //        Tonality Section binding
@@ -213,74 +222,104 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
             }
         }
 
-        discover_category_unicef_online_media.setOnClickListener(this);
-        discover_category_governance.setOnClickListener(this);
-        discover_category_child_protection.setOnClickListener(this);
-        discover_category_child_health.setOnClickListener(this);
-        discover_category_unicef.setOnClickListener(this);
-        discover_category_child_education.setOnClickListener(this);
-        discover_category_others.setOnClickListener(this);
-//        discover_category_unicef_online_media.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MediaWatch[] onlineMediaWatch = unicefOnlineMedia.toArray(unicefOnlineMedia.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(onlineMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
-//        discover_category_governance.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MediaWatch[] governanceMediaWatch = governance.toArray(governance.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(governanceMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
-//        discover_category_child_protection.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MediaWatch[] childProtectionMediaWatch = childProtection.toArray(childProtection.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(childProtectionMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
-//        discover_category_child_health.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MediaWatch[] childHealthMediaWatch = childHealth.toArray(childHealth.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(childHealthMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
-//        discover_category_unicef.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MediaWatch[] unicefMediaWatch = unicef.toArray(unicef.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(unicefMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
-//        discover_category_child_education.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+//        discover_category_unicef_online_media.setOnClickListener(this);
+//        discover_category_governance.setOnClickListener(this);
+//        discover_category_child_protection.setOnClickListener(this);
+//        discover_category_child_health.setOnClickListener(this);
+//        discover_category_unicef.setOnClickListener(this);
+//        discover_category_child_education.setOnClickListener(this);
+//        discover_category_others.setOnClickListener(this);
+
+//        for (int i = 0; i < tonalityLinearLayout.getChildCount(); i++) {
+//            View child = tonalityLinearLayout.getChildAt(i);
+//            child.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(getApplicationContext(), "Button 2 Clicked", Toast.LENGTH_SHORT).show();
+//                    handleElementClick(v);
+//                }
+//            });
+//        }
+//        for (int i = 0; i < tonalityLinearLayout.getChildCount(); i++) {
+//            View child = tonalityLinearLayout.getChildAt(i);
+//            child.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+//        }
+
+
+        discover_category_unicef_online_media.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                thematicLinearLayout.setBackgroundResource(R.color.black);
+//                thematicLinearLayout.setBackgroundResource(R.color.black);
+                MediaWatch[] onlineMediaWatch = unicefOnlineMedia.toArray(unicefOnlineMedia.toArray(new MediaWatch[0]));
+                UnicefAdapter onlineMediaWatchAdapter = new UnicefAdapter(onlineMediaWatch);
+                handleElementClick(v);
+                discover_feed_recycler.setAdapter(onlineMediaWatchAdapter);
+
+
+            }
+        });
+        discover_category_governance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                thematicLinearLayout.setBackgroundResource(R.color.black);
+                MediaWatch[] governanceMediaWatch = governance.toArray(governance.toArray(new MediaWatch[0]));
+                UnicefAdapter unicefAdapter = new UnicefAdapter(governanceMediaWatch);
+                handleElementClick(v);
+                discover_feed_recycler.setAdapter(unicefAdapter);
+            }
+        });
+        discover_category_child_protection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thematicLinearLayout.setBackgroundResource(R.color.transparent);
+                MediaWatch[] childProtectionMediaWatch = childProtection.toArray(childProtection.toArray(new MediaWatch[0]));
+                UnicefAdapter unicefAdapter = new UnicefAdapter(childProtectionMediaWatch);
+                discover_feed_recycler.setAdapter(unicefAdapter);
+            }
+        });
+        discover_category_child_health.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaWatch[] childHealthMediaWatch = childHealth.toArray(childHealth.toArray(new MediaWatch[0]));
+                UnicefAdapter unicefAdapter = new UnicefAdapter(childHealthMediaWatch);
+                discover_feed_recycler.setAdapter(unicefAdapter);
+            }
+        });
+        discover_category_unicef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaWatch[] unicefMediaWatch = unicef.toArray(unicef.toArray(new MediaWatch[0]));
+                UnicefAdapter unicefAdapter = new UnicefAdapter(unicefMediaWatch);
+                discover_feed_recycler.setAdapter(unicefAdapter);
+            }
+        });
+        discover_category_child_education.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                discover_category_child_education.setBackgroundResource(R.color.brand_color);
 //                discover_category_child_education.setTextColor(Color.parseColor("#FFFFFF"));
-//                MediaWatch[] childMediaWatch = childEducation.toArray(childEducation.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(childMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
+                MediaWatch[] childMediaWatch = childEducation.toArray(childEducation.toArray(new MediaWatch[0]));
+                UnicefAdapter unicefAdapter = new UnicefAdapter(childMediaWatch);
+                discover_feed_recycler.setAdapter(unicefAdapter);
+            }
+        });
 
-//        discover_category_others.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        discover_category_others.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                discover_category_others.setBackgroundResource(R.color.brand_color);
 //                discover_category_others.setTextColor(Color.parseColor("#FFFFFF"));
-//                MediaWatch[] othersMediaWatch = others.toArray(others.toArray(new MediaWatch[0]));
-//                UnicefAdapter unicefAdapter = new UnicefAdapter(othersMediaWatch);
-//                discover_feed_recycler.setAdapter(unicefAdapter);
-//            }
-//        });
+                MediaWatch[] othersMediaWatch = others.toArray(others.toArray(new MediaWatch[0]));
+                UnicefAdapter unicefAdapter = new UnicefAdapter(othersMediaWatch);
+                discover_feed_recycler.setAdapter(unicefAdapter);
+            }
+        });
 
 
 //        Media Type On Click Listeners
@@ -386,7 +425,8 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.discover_category_unicef_online_media:
 //                Toast.makeText(Discover.this, "TV = "+positive.size(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "Unicef Online Media Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Unicef Online Media Clicked", Toast.LENGTH_SHORT).show();
+                discover_category_child_education.setBackgroundResource(R.color.brand_color);
                 break;
             default:
                 break;
@@ -462,6 +502,30 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //            e.printStackTrace();
 //        }
 //    }
+
+
+//    External OnClick Method
+private void handleElementClick(View view) {
+        Boolean selected = false;
+    // Handle the click event for each element
+    if (view.getId() == R.id.discover_category_governance) {
+//        Toast.makeText(getApplicationContext(), "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+            discover_category_governance.setBackgroundResource(R.color.brand_color);
+
+//        discover_tonality_all.setBackgroundResource(R.color.brand_color);
+    } else if (view.getId() == R.id.discover_tonality_positive) {
+//        discover_tonality_positive.setBackgroundResource(R.color.brand_color);
+//        discover_tonality_positive.setText("Clicked");
+    } else if (view.getId() == R.id.discover_category_unicef_online_media) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+            discover_category_unicef_online_media.setBackgroundResource(R.color.brand_color);
+
+    }
+    // Add more cases as needed
+}
+
+
 }
 
 
