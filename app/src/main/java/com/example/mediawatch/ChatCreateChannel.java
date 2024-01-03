@@ -1,5 +1,6 @@
 package com.example.mediawatch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -34,6 +35,9 @@ public class ChatCreateChannel extends AppCompatActivity {
     private DatabaseReference usersRef;
     UsersAdapterGroup usersAdapterGroup;
 
+    private DatabaseReference groupsRef;
+    private String groupId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,14 @@ public class ChatCreateChannel extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
+
+        groupsRef = FirebaseDatabase.getInstance().getReference("groups");
+
+        // Get the group ID from the intent or any other means
+        groupId = "-Nn84aMtlsDr3GRDZnZL"; // Replace this with the actual group ID
+
+        // Add a new member to the group
+        addMemberToGroup("Maina Antony");
 //        databaseReference = FirebaseDatabase.getInstance().getReference("unicef");
 //        usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
@@ -66,7 +78,12 @@ public class ChatCreateChannel extends AppCompatActivity {
             public void onClick(View v) {
 //                String groupName = groupNameEditText .getText().toString();
                 createGroup();
+
+                Intent intent = new Intent(ChatCreateChannel.this, ChatAllChannels.class);
+                startActivity(intent);
+
                 finish();
+
 //                if(!groupName.equals("")){
 ////                    createGroup(groupName, members);
 //                    Toast.makeText(ChatCreateChannel.this, "Group : " +groupName+ "Created Succesfully", Toast.LENGTH_SHORT).show();
@@ -168,5 +185,30 @@ private void createGroup() {
         finish(); // Finish the activity after creating the group
     }
 }
+
+    private void addMemberToGroup(String newUserId) {
+        // Reference to the members node of the specified group
+        DatabaseReference groupMembersRef = groupsRef.child(groupId).child("members");
+
+        // Check if the member already exists in the group
+        groupMembersRef.child(newUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    // If the member doesn't exist, add them to the group
+                    groupMembersRef.child(newUserId).setValue(true);
+//                    Toast.makeText(GroupChatActivity.this, "Member added to the group", Toast.LENGTH_SHORT).show();
+                } else {
+//                    Toast.makeText(GroupChatActivity.this, "Member already in the group", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+//                Toast.makeText(GroupChatActivity.this, "Error adding member to the group", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

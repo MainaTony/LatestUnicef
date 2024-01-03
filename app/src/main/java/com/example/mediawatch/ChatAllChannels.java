@@ -34,7 +34,7 @@ public class ChatAllChannels extends AppCompatActivity {
 
 //    UsersAdapter usersAdapter;
 
-    UsersAdapterGroup usersAdapterGroup;
+    UsersAdapterGroupAddMember usersAdapterGroup;
     private List<User> users;
 
     private List<String> selectedUsers;
@@ -95,8 +95,10 @@ public class ChatAllChannels extends AppCompatActivity {
                 String fetchedGroupId = getIntent().getStringExtra("fetchedGroupId");
 
                 getUsers();
-                usersAdapterGroup = new UsersAdapterGroup(list, username, ChatAllChannels.this);
-                rv2.setAdapter(usersAdapterGroup);
+
+//                usersAdapterGroup = new UsersAdapterGroupAddMember(list, username, ChatAllChannels.this);
+//                rv2.setAdapter(usersAdapterGroup);
+
 //                userListProgressBar.setVisibility(View.INVISIBLE);
             }
 

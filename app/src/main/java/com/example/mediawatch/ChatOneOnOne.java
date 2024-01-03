@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +42,11 @@ public class ChatOneOnOne extends AppCompatActivity {
     ProgressBar userListProgressBar;
 
     ImageView chat_room_add_img;
+    TextView chatRoomGroupNames;
+
+    private RecyclerView recyclerView;
+    private GroupAdapter groupAdapter;
+    private List<Group> groups;
 
 
     @Override
@@ -49,6 +55,36 @@ public class ChatOneOnOne extends AppCompatActivity {
         setContentView(R.layout.activity_chat_one_on_one);
         rv = findViewById(R.id.rv);
         chat_room_add_img = findViewById(R.id.chat_room_add_img);
+
+        recyclerView = findViewById(R.id.rv3);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        groups = new ArrayList<>();
+        groupAdapter = new GroupAdapter(groups);
+        recyclerView.setAdapter(groupAdapter);
+        fetchGroupsFromFirebase();
+
+//        String groupId = "-Nn7roC9hcqHmt1vjHOT";
+//        DatabaseReference groupsRef = FirebaseDatabase.getInstance().getReference("groups").child(groupId);
+//        groupsRef.child("groupName").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    String groupName = dataSnapshot.getValue(String.class);
+//                    // Do something with the group name
+////                    Log.d("Group Name", groupName);
+////                    chatRoomGroupNames.setText(groupName);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle errors
+//            }
+//        });
+
+
+
         chat_room_add_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,4 +156,28 @@ public class ChatOneOnOne extends AppCompatActivity {
             }
         });
     }
+
+    private void fetchGroupsFromFirebase() {
+        DatabaseReference groupsRef = FirebaseDatabase.getInstance().getReference("groups");
+
+        groupsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                groups.clear();
+
+                for (DataSnapshot groupSnapshot : dataSnapshot.getChildren()) {
+                    Group group = groupSnapshot.getValue(Group.class);
+                    groups.add(group);
+                }
+
+                groupAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
+    }
+
 }
