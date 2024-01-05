@@ -6,6 +6,8 @@ public class Group {
     private String groupId;
     private String groupName;
     private String adminId; // Add adminId field
+
+    private List<String> members;
 //    private List<String> members;
 
     public Group() {
@@ -15,7 +17,14 @@ public class Group {
         this.groupName = groupName;
         this.adminId = adminId;
 
+    }
 
+    public List<String> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<String> members) {
+        this.members = members;
     }
 
     public String getAdminId() {

@@ -233,24 +233,36 @@ public interface OnItemClickListener {
 // If you try to trade pin bars or engulfing bars on the 5-minute time frame, you will loose your money, because there is a lot of noise in the lower time frames, and the market will generate alot of false signals because of the hard battles between bears and bulls
 // There is no one successful trader that focuses on 1 time frame
 // Top Down Analysis - Begin from bigger time frame and to get the picture and switch to the smaller time frame to decide whether to buy or sell the market
+// Lets sya you want to trade the 4 hour chart, you have to look at the weekly chart first and then the daily chart, If the weekly and the daily chart analysis align with the 4 hour chart, you can take your trading decision
+// To trade the 1H chart first you have to look at the daily. This will help you avoid low probability setups and it will allow you to stay focussed on high probability price action signals
+// Importance of Top Down Analysis
+// 1. Helps us Identify The Most Important Support and resistance levels
+// If you can identify them on weekly chart, you will know what is going to happen when the price approaches this levels on the 4H chart
+// 2. Market Structure. Helps you identify whether the market is trending, ranging or even choppy and you will try to find a way to follow them on smaller time frames
+// 3. Previous candle. The previous candle in the weekly chart is important because it helps us identify what will happen during a week and it provides us with valuable information about the future market move
+// 4. The market condition. What the market is doing on the 4H chart. Is it trending up or down
+// Trade counter trends using price action [Counter trend means a reversal]
+// This is a double top setup
+// TRADING STRATEGIES AND TACTICS
+// First - From previous chapters - Identify market trend(uptrend/downtrend)
+// Second - Draw support and resistance lines on key levels
+// Third - Signals - The candle stick formed
+// The Pin Bar Candle Stick Pattern/Hammer/ Shooting star/ 38.2% candle
+// Widely used to determine reversal points in the market
+// You will learn how to identify potential pin bars signals and the conditions needed for high probability setups
+// A pin bar is characterised by a very long wick that shows rejection and indicates that the market will move in the opposite direction
+// Bullish [Hammer]- Long lower wicks
+// Bearish [Shooting star]- long upper wicks
+// Sometimes the signals fail for no apparent reason
+// You should evaluate pin bar setups from multiple angles
+// Pin bar should respect the following criteria to be traded;
+// Pin bar formed in bigger time frames should be taken into consideration. Lower time frames contain a lot of them and should avoided because they generate a lot of false signals
+// Pin bar formed in direction of the trend is very powerful than the ones formed against the trend
+// Pin bars with longer tails are more powerful
+// The major areas to watch for pin bars are: support and resistance, supply and demand zones and moving averages
+// Formation of this candle stick chart pattern in these levels give a clear idea about what happens in the market
+// If formation of this candle stick occurs near a resistance leve, it indicates that the bears reject prices, and prevent the bulls from breaking this level so prices continue with the trend i.e. downtrend
+// Trading the pin bar candle stick with the trend
 //
 //
 //
-//
-//
-//
-//    public ViewHolder(@NonNull View itemView) {
-//        super(itemView);
-//
-//        textViewUsers = itemView.findViewById(R.id.textViewUsersGroup);
-//        imageViewUsers = itemView.findViewById(R.id.imageViewUsersGroup);
-//        cardView = itemView.findViewById(R.id.cardViewGroup);
-//    }
-//    public ViewHolder(@NonNull View itemView) {
-//        super(itemView);
-//
-//        textViewUsers = itemView.findViewById(R.id.textViewUsersGroup);
-//        imageViewUsers = itemView.findViewById(R.id.imageViewUsersGroup);
-//        cardView = itemView.findViewById(R.id.cardViewGroup);
-//    }
-//   }

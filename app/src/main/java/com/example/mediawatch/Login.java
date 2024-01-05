@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
 //                new SweetAlertDialog(Login.this)
 //                        .setTitleText("Successfully redirecting to sign up")
 //                        .show();
-                Intent intent = new Intent(Login.this, Verify.class);
+                Intent intent = new Intent(Login.this, SignInMain.class);
                 startActivity(intent);
             }
         });

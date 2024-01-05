@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MediaWatch"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".GroupChat"
+            android:exported="false" />
+        <activity
             android:name=".MyChatActivity"
             android:exported="false" />
         <activity

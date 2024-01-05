@@ -44,9 +44,11 @@ public class ChatOneOnOne extends AppCompatActivity {
     ImageView chat_room_add_img;
     TextView chatRoomGroupNames;
 
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewUsers, recyclerViewGroups;
+//    private UserAdapter userAdapter;
     private GroupAdapter groupAdapter;
-    private List<Group> groups;
+    private DatabaseReference usersRef, groupsRef, membersRef;
+    private String adminUserId;
 
 
     @Override
@@ -56,24 +58,34 @@ public class ChatOneOnOne extends AppCompatActivity {
         rv = findViewById(R.id.rv);
         chat_room_add_img = findViewById(R.id.chat_room_add_img);
 
-        recyclerView = findViewById(R.id.rv3);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        groups = new ArrayList<>();
-        groupAdapter = new GroupAdapter(groups);
-        recyclerView.setAdapter(groupAdapter);
-        fetchGroupsFromFirebase();
+//        recyclerView = findViewById(R.id.rv3);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        groups = new ArrayList<>();
+//        groupAdapter = new GroupAdapter(groups);
+//        recyclerView.setAdapter(groupAdapter);
 
-//        String groupId = "-Nn7roC9hcqHmt1vjHOT";
-//        DatabaseReference groupsRef = FirebaseDatabase.getInstance().getReference("groups").child(groupId);
-//        groupsRef.child("groupName").addListenerForSingleValueEvent(new ValueEventListener() {
+        // Initialize Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        usersRef = database.getReference("Users");
+        groupsRef = database.getReference("groups");
+        membersRef = database.getReference("members");
+
+        // Initialize RecyclerViews and Adapters
+        recyclerViewUsers = findViewById(R.id.rv);
+//        recyclerViewUsers.setLayoutManager(new LinearLayoutManager(this));
+//        usersAdapter = new UsersAdapter();
+//        recyclerViewUsers.setAdapter(usersAdapter);
+//        adminUserId = "kzWQuhH2vSVRkrNpvaISU28NTqQ2";
+//        This admin Id is for unicef
+//        usersRef.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    String groupName = dataSnapshot.getValue(String.class);
-//                    // Do something with the group name
-////                    Log.d("Group Name", groupName);
-////                    chatRoomGroupNames.setText(groupName);
-//
+//                usersAdapter.clear();
+//                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+//                    String userId = userSnapshot.getKey();
+//                    String username = userSnapshot.child("username").getValue(String.class);
+//                    User user = new User(userId, username);
+//                    usersAdapter.addUser(user);
 //                }
 //            }
 //
@@ -82,8 +94,52 @@ public class ChatOneOnOne extends AppCompatActivity {
 //                // Handle errors
 //            }
 //        });
+//
+//        // Set up item click listener for adding users to a group
+//        usersAdapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(User selectedUser) {
+//                // Create or select a group and add the selected user as a member
+//                createOrSelectGroup(selectedUser);
+////                addUserToGroup(selectedUser);
+//            }
+//        });
 
-
+//
+        // Set up ValueEventListener to fetch user data
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            adminUserId = currentUser.getUid();
+//        } else {
+//            // Handle the case where the user is not authenticated
+//        }
+//        usersRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                userAdapter.clear();
+//                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+//                    String userId = userSnapshot.getKey();
+//                    String username = userSnapshot.child("username").getValue(String.class);
+//                    User user = new User(userId, username);
+//                    userAdapter.addUser(user);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle errors
+//            }
+//        });
+//
+//        // Set up item click listener for adding users to a group
+//        userAdapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(User selectedUser) {
+//                // Create or select a group and add the selected user as a member
+//                createOrSelectGroup(selectedUser);
+//            }
+//        });
 
         chat_room_add_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +152,6 @@ public class ChatOneOnOne extends AppCompatActivity {
 
         userListProgressBar = findViewById(R.id.userListProgressBar);
         userListProgressBar.setVisibility(View.VISIBLE);
-//        rv.setLayoutManager(new LinearLayoutManager(this));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rv.setLayoutManager(layoutManager);
@@ -107,6 +162,7 @@ public class ChatOneOnOne extends AppCompatActivity {
         user = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+
         reference.child("Users").child(user.getUid()).child("username").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -123,13 +179,14 @@ public class ChatOneOnOne extends AppCompatActivity {
             }
         });
     }
-    public void getUsers(){
+
+    public void getUsers() {
         reference.child("Users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 String key = dataSnapshot.getKey();
 
-                if(!key.equals(user.getUid())){
+                if (!key.equals(user.getUid())) {
                     list.add(key);
                     usersAdapter.notifyDataSetChanged();
                 }
@@ -156,21 +213,88 @@ public class ChatOneOnOne extends AppCompatActivity {
             }
         });
     }
+//
+//    private void fetchGroupsFromFirebase() {
+//        DatabaseReference groupsRef = FirebaseDatabase.getInstance().getReference("groups");
+//
+//        groupsRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                groups.clear();
+//
+//                for (DataSnapshot groupSnapshot : dataSnapshot.getChildren()) {
+//                    Group group = groupSnapshot.getValue(Group.class);
+//                    groups.add(group);
+//                }
+//
+//                groupAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle errors
+//            }
+//        });
+//    }
 
-    private void fetchGroupsFromFirebase() {
-        DatabaseReference groupsRef = FirebaseDatabase.getInstance().getReference("groups");
+private void createOrSelectGroup(User selectedUser) {
+    // Implement logic to create or select a group and add the selected user as a member
+    // You may need to create a dialog or another UI component to manage this interaction
+    // Example:
+    String groupName = "Unicef"; // Replace with actual group name
+    String groupId = groupsRef.push().getKey();
+    List<String> members = new ArrayList<>();
+    members.add(adminUserId);
+    members.add(selectedUser.getUserId());
 
-        groupsRef.addValueEventListener(new ValueEventListener() {
+    Group group = new Group(groupId, groupName, adminUserId);
+    groupsRef.child(groupId).setValue(group);
+}
+
+//    private void createOrSelectGroup(User selectedUser) {
+//        // Implement logic to create or select a group and add the selected user as a member
+//        // You may need to create a dialog or another UI component to manage this interaction
+//        // Example:
+//        String groupName = "Unicef"; // Replace with actual group name
+//        String groupId = groupsRef.push().getKey();
+//        List<String> members = new ArrayList<>();
+//        members.add(adminUserId);
+//        members.add(selectedUser.getUserId());
+//
+//        Group group = new Group(groupId, groupName, adminUserId);
+//        groupsRef.child(groupId).setValue(group);
+//
+//        // Add the member to the membersRef
+//        String memberName = "Isaiah"; // Replace with actual member name
+//        String memberId = membersRef.push().getKey();
+//        Member member = new Member(memberId, groupId, selectedUser.getUserId(), memberName);
+//        membersRef.child(memberId).setValue(member);
+//    }
+
+    private void addUserToGroup(User selectedUser) {
+        String groupName = "Unicef"; // Replace with the actual group name
+        String groupId = groupsRef.push().getKey();
+
+        // Create the group and add the admin and selected user as members
+        Group group = new Group(groupId, groupName, adminUserId);
+        groupsRef.child(groupId).setValue(group);
+
+        List<String> members = new ArrayList<>();
+        members.add(adminUserId);
+        members.add(selectedUser.getUserId());
+        DatabaseReference member = database.getReference("members");
+        member.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                groups.clear();
-
-                for (DataSnapshot groupSnapshot : dataSnapshot.getChildren()) {
-                    Group group = groupSnapshot.getValue(Group.class);
-                    groups.add(group);
+                for (String memberId : members) {
+                    String memberName = dataSnapshot.child(memberId).getValue(String.class);
+                    if (memberName != null) {
+                        // Add members to the membersRef
+                        String memberKey = membersRef.push().getKey();
+                        Member member = new Member(memberKey, groupId, memberId, memberName);
+                        membersRef.child(memberKey).setValue(member);
+                    }
                 }
-
-                groupAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -178,6 +302,8 @@ public class ChatOneOnOne extends AppCompatActivity {
                 // Handle errors
             }
         });
-    }
 
+
+
+    }
 }

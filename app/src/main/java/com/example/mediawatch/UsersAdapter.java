@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -56,6 +57,17 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
                 final String otherName = snapshot.child("username").getValue().toString();
 //                String imageURL = snapshot.child("image").getValue().toString();
+
+                final String clickedUserUid = userList.get(holder.getAdapterPosition());
+
+                // Assuming you have a DatabaseReference for the group
+                DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference("groups").child("-Nn84aMtlsDr3GRDZnZL");
+
+                // Add the clicked user to the group's members
+                groupRef.child("members").child(clickedUserUid).setValue(true);
+
+                // Optionally, notify the user or update the UI
+//                Toast.makeText(mContext, "User added to the chat group", Toast.LENGTH_SHORT).show();
 
                 holder.textViewUsers.setText(otherName);
 
