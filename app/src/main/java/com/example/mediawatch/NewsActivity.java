@@ -4,9 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mediawatch.databinding.ActivityMainBinding;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import java.io.File;
 
 public class NewsActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -14,6 +32,7 @@ public class NewsActivity extends AppCompatActivity {
 
     TextView news_activity_category;
     TextView news_activity_summary;
+    Button downloadStory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +47,28 @@ public class NewsActivity extends AppCompatActivity {
         news_activity_title = findViewById(R.id.news_activity_title);
         news_activity_category = findViewById(R.id.news_activity_category);
         news_activity_summary = findViewById(R.id.news_activity_summary);
+        downloadStory = findViewById(R.id.downloadStory);
+
+
+
 
         news_activity_title.setText(title);
         news_activity_category.setText(category);
         news_activity_summary.setText(summary);
+
+        downloadStory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String textToSave = summary;
+                String pdfFileName = title+".pdf";
+                createPdf(textToSave, pdfFileName);
+
+                Toast.makeText(NewsActivity.this, "File Successfully downloaded", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -56,4 +93,31 @@ public class NewsActivity extends AppCompatActivity {
             return false;
         });
     }
+
+    public static void createPdf(String text, String pdfFileName) {
+        // Create a PdfWriter object
+        try {
+            File pdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), pdfFileName);
+            PdfWriter writer = new PdfWriter(pdfFile);
+
+            // Create a PdfDocument object
+            PdfDocument pdfDocument = new PdfDocument(writer);
+
+            // Create a Document object
+            Document document = new Document(pdfDocument);
+
+            // Add text to the document
+            document.add(new Paragraph(text));
+
+            // Close the document
+            document.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 }
+
