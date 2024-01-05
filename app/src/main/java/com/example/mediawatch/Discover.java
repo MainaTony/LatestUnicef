@@ -280,6 +280,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
                 thematicLinearLayout.setBackgroundResource(R.color.transparent);
                 MediaWatch[] childProtectionMediaWatch = childProtection.toArray(childProtection.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(childProtectionMediaWatch);
+                handleElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -288,6 +289,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
             public void onClick(View v) {
                 MediaWatch[] childHealthMediaWatch = childHealth.toArray(childHealth.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(childHealthMediaWatch);
+                handleElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -296,6 +298,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
             public void onClick(View v) {
                 MediaWatch[] unicefMediaWatch = unicef.toArray(unicef.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(unicefMediaWatch);
+                handleElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -306,6 +309,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                discover_category_child_education.setTextColor(Color.parseColor("#FFFFFF"));
                 MediaWatch[] childMediaWatch = childEducation.toArray(childEducation.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(childMediaWatch);
+                handleElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -317,6 +321,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                discover_category_others.setTextColor(Color.parseColor("#FFFFFF"));
                 MediaWatch[] othersMediaWatch = others.toArray(others.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(othersMediaWatch);
+                handleElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -329,6 +334,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "Print Media = "+printMedia.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] printMediaWatch = printMedia.toArray(printMedia.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(printMediaWatch);
+                handleMediaElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -338,6 +344,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "TV = "+tv.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] tvMediaWatch = tv.toArray(tv.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(tvMediaWatch);
+                handleMediaElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -347,6 +354,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "Radio = "+radio.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] radioMediaWatch = radio.toArray(radio.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(radioMediaWatch);
+                handleMediaElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -356,6 +364,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "Online Media = "+onlineMedia.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] onlineMediaWatch = onlineMedia.toArray(onlineMedia.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(onlineMediaWatch);
+                handleMediaElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -363,6 +372,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 UnicefAdapter unicefAdapter = new UnicefAdapter(storedMediaWatchArray);
+                handleMediaElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -373,6 +383,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
             public void onClick(View v) {
 //                MediaWatch[] positiveMediaWatch = positive.toArray(positive.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(storedMediaWatchArray);
+                handleTonalityElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
 
             }
@@ -383,6 +394,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "Positive = "+positive.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] positiveMediaWatch = positive.toArray(positive.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(positiveMediaWatch);
+                handleTonalityElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -393,6 +405,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "Negative = "+negative.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] positiveMediaWatch = negative.toArray(negative.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(positiveMediaWatch);
+                handleTonalityElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -403,6 +416,7 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
 //                Toast.makeText(Discover.this, "Neutral = "+neutral.size(), Toast.LENGTH_SHORT).show();
                 MediaWatch[] positiveMediaWatch = neutral.toArray(neutral.toArray(new MediaWatch[0]));
                 UnicefAdapter unicefAdapter = new UnicefAdapter(positiveMediaWatch);
+                handleTonalityElementClick(v);
                 discover_feed_recycler.setAdapter(unicefAdapter);
             }
         });
@@ -510,20 +524,235 @@ private void handleElementClick(View view) {
     // Handle the click event for each element
     if (view.getId() == R.id.discover_category_governance) {
 //        Toast.makeText(getApplicationContext(), "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+        int childCount = ((LinearLayout) discover_category_governance.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_governance.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
             discover_category_governance.setBackgroundResource(R.color.brand_color);
 
 //        discover_tonality_all.setBackgroundResource(R.color.brand_color);
-    } else if (view.getId() == R.id.discover_tonality_positive) {
+    } else if (view.getId() == R.id.discover_category_unicef_online_media) {
+        int childCount = ((LinearLayout) discover_category_unicef_online_media.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_unicef_online_media.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_unicef_online_media.setBackgroundResource(R.color.brand_color);
 //        discover_tonality_positive.setBackgroundResource(R.color.brand_color);
 //        discover_tonality_positive.setText("Clicked");
     } else if (view.getId() == R.id.discover_category_unicef_online_media) {
 //            tonalityLinearLayout.setBackgroundResource(R.color.white);
 //            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
-            discover_category_unicef_online_media.setBackgroundResource(R.color.brand_color);
+        int childCount = ((LinearLayout) discover_category_unicef_online_media.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_unicef_online_media.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_unicef_online_media.setBackgroundResource(R.color.brand_color);
 
     }
     // Add more cases as needed
+    else if (view.getId() == R.id.discover_category_child_protection) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+        int childCount = ((LinearLayout) discover_category_child_protection.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_child_protection.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_child_protection.setBackgroundResource(R.color.brand_color);
+
+    }
+
+    else if (view.getId() == R.id.discover_category_child_health) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+        int childCount = ((LinearLayout) discover_category_child_health.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_child_health.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_child_health.setBackgroundResource(R.color.brand_color);
+
+    }
+    else if (view.getId() == R.id.discover_category_unicef) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+        int childCount = ((LinearLayout) discover_category_unicef.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_unicef.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_unicef.setBackgroundResource(R.color.brand_color);
+
+    }
+    else if (view.getId() == R.id.discover_category_child_education) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+        int childCount = ((LinearLayout) discover_category_child_education.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_child_education.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_child_education.setBackgroundResource(R.color.brand_color);
+
+    }
+
+    else if (view.getId() == R.id.discover_category_others) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+        int childCount = ((LinearLayout) discover_category_others.getParent()).getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = ((LinearLayout) discover_category_others.getParent()).getChildAt(i);
+            if (childView instanceof TextView) {
+                childView.setBackgroundColor(0); // Reset background color to transparent
+            }
+        }
+        discover_category_others.setBackgroundResource(R.color.brand_color);
+
+    }
 }
+
+    private void handleMediaElementClick(View view) {
+        Boolean selected = false;
+        // Handle the click event for each element
+        if (view.getId() == R.id.discover_print_media) {
+//        Toast.makeText(getApplicationContext(), "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+            int childCount = ((LinearLayout) discover_print_media.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_print_media.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_print_media.setBackgroundResource(R.color.brand_color);
+
+//        discover_tonality_all.setBackgroundResource(R.color.brand_color);
+        } else if (view.getId() == R.id.discover_tv) {
+            int childCount = ((LinearLayout) discover_tv.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_tv.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_tv.setBackgroundResource(R.color.brand_color);
+//        discover_tonality_positive.setBackgroundResource(R.color.brand_color);
+//        discover_tonality_positive.setText("Clicked");
+        } else if (view.getId() == R.id.discover_radio) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+            int childCount = ((LinearLayout) discover_radio.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_radio.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_radio.setBackgroundResource(R.color.brand_color);
+
+        }
+        // Add more cases as needed
+        else if (view.getId() == R.id.discover_online_media) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+            int childCount = ((LinearLayout) discover_online_media.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_online_media.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_online_media.setBackgroundResource(R.color.brand_color);
+
+        }
+
+        else if (view.getId() == R.id.discover_media_type_all) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+            int childCount = ((LinearLayout) discover_media_type_all.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_media_type_all.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_media_type_all.setBackgroundResource(R.color.brand_color);
+
+        }
+
+    }
+
+    private void handleTonalityElementClick(View view) {
+        Boolean selected = false;
+        // Handle the click event for each element
+        if (view.getId() == R.id.discover_tonality_all) {
+//        Toast.makeText(getApplicationContext(), "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+            int childCount = ((LinearLayout) discover_tonality_all.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_tonality_all.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_tonality_all.setBackgroundResource(R.color.brand_color);
+
+//        discover_tonality_all.setBackgroundResource(R.color.brand_color);
+        } else if (view.getId() == R.id.discover_tonality_positive) {
+            int childCount = ((LinearLayout) discover_tonality_positive.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_tonality_positive.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_tonality_positive.setBackgroundResource(R.color.brand_color);
+//        discover_tonality_positive.setBackgroundResource(R.color.brand_color);
+//        discover_tonality_positive.setText("Clicked");
+        } else if (view.getId() == R.id.discover_tonality_negative) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+            int childCount = ((LinearLayout) discover_tonality_negative.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_tonality_negative.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_tonality_negative.setBackgroundResource(R.color.brand_color);
+
+        }
+        // Add more cases as needed
+        else if (view.getId() == R.id.discover_tonality_neutral) {
+//            tonalityLinearLayout.setBackgroundResource(R.color.white);
+//            thematicLinearLayout.setBackgroundResource(R.color.brand_color);
+            int childCount = ((LinearLayout) discover_tonality_neutral.getParent()).getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = ((LinearLayout) discover_tonality_neutral.getParent()).getChildAt(i);
+                if (childView instanceof TextView) {
+                    childView.setBackgroundColor(0); // Reset background color to transparent
+                }
+            }
+            discover_tonality_neutral.setBackgroundResource(R.color.brand_color);
+
+        }
+
+    }
 
 
 }

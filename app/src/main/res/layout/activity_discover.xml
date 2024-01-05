@@ -141,11 +141,6 @@
                 android:textSize="20sp"
                 />
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="6dp">
             <TextView
                 android:id="@+id/discover_category_others"
                 android:layout_width="wrap_content"
@@ -155,6 +150,13 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"
                 />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="6dp">
+
         </androidx.cardview.widget.CardView>
 
 
