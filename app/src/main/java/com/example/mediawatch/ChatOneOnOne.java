@@ -50,6 +50,8 @@ public class ChatOneOnOne extends AppCompatActivity {
     private DatabaseReference usersRef, groupsRef, membersRef;
     private String adminUserId;
 
+    ImageView chatOneOnOneImageViewBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +142,15 @@ public class ChatOneOnOne extends AppCompatActivity {
 //                createOrSelectGroup(selectedUser);
 //            }
 //        });
+        chatOneOnOneImageViewBack = findViewById(R.id.chatOneOnOneImageViewBack);
+        chatOneOnOneImageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ChatOneOnOne.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         chat_room_add_img.setOnClickListener(new View.OnClickListener() {
             @Override

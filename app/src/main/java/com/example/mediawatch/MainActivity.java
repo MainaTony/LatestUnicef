@@ -30,6 +30,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -59,8 +60,12 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(R.layout.activity_main);
         setContentView(binding.getRoot());
+
         newsFeed = findViewById(R.id.recycler_view_news_feed);
         requestQueue = Volley.newRequestQueue(MainActivity.this);
         try{

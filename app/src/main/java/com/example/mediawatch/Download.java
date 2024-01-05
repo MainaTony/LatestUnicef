@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,12 +18,23 @@ import java.util.List;
 
 public class Download extends AppCompatActivity {
 
+    ImageView downloadImageViewBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
 //        TextView downloadItem = findViewById(R.id.downloadItem);
         RecyclerView downloadRecycler = findViewById(R.id.downloadRecycler);
+        downloadImageViewBack = findViewById(R.id.downloadImageViewBack);
+        downloadImageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Download.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
 
 

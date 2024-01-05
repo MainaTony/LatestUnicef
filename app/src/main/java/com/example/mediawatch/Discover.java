@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.pdf.PdfDocument;
 import android.media.MediaScannerConnection;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +72,8 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
     HorizontalScrollView tonalityHorizontalScrollView;
     LinearLayout tonalityLinearLayout, thematicLinearLayout;
 
+    ImageView discoverImageViewBack;
+
 
 
 
@@ -78,6 +82,15 @@ public class Discover extends AppCompatActivity implements View.OnClickListener 
         TextView healthTxt;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
+        discoverImageViewBack = findViewById(R.id.discoverImageViewBack);
+        discoverImageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Discover.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 //        healthTxt = findViewById(R.id.healthTxt);
 
 //        String fileName = "https://forexbee.co/chart-patterns-pdf/";

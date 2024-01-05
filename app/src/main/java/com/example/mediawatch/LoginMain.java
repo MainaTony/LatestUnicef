@@ -35,6 +35,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -58,6 +59,7 @@ public class LoginMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+        FirebaseApp.initializeApp(this);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -66,37 +68,26 @@ public class LoginMain extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         Button myLoginButton = findViewById(R.id.myLoginButton);
+//        myLoginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                String mail = email.getText().toString();
+//                String pass = password.getText().toString();
+//                signIn(mail, pass);
+//            }
+//        });
         myLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                String mail = email.getText().toString();
-                String pass = password.getText().toString();
-//                String  uname = username.getText().toString();
-
-                signIn(mail, pass);
-//                Intent intent = new Intent(LoginMain.this, MainActivity.class);
-//                startActivity(intent);
-
-//                if(!mail.equals("") && !pass.equals("")){
-//                    signIn(mail, pass);
-//                } else {
-//                    Toast.makeText(LoginMain.this, "Please enter a valid username and password", Toast.LENGTH_SHORT).show();
-//                }
-
-//                if(!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
-//                    JSONObject params = new JSONObject();
-////                        params.put("username", email.getText().toString());
-////                        params.put("password", password.getText().toString());
-//                    makeJsonRequest(urlFetchData, params);
-//                    Intent intent = new Intent(LoginMain.this, MainActivity.class);
-//                    startActivity(intent);
-//                    progressBar.setVisibility(View.INVISIBLE);
-//                } else{
-//                    Toast.makeText(LoginMain.this, "Please Enter Your Username or password", Toast.LENGTH_SHORT).show();
-//                }
+                Toast.makeText(LoginMain.this, "Login successful.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginMain.this, MainActivity.class);
+                startActivity(intent);
+//                login();
             }
         });
+
+
     }
 
     public void signIn(String email, String password){
@@ -113,6 +104,31 @@ public class LoginMain extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+
+    public void login() {
+        String mail = email.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+        auth.signInWithEmailAndPassword(mail, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI or navigate to the next screen
+//                            Log.d("LoginActivity", "signInWithEmail:success");
+                            Toast.makeText(LoginMain.this, "Login successful.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginMain.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            // If sign in fails, display a message to the user.
+//                            Log.w("LoginActivity", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginMain.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
