@@ -25,7 +25,7 @@ import java.util.List;
 
 public class ChatCreateChannel extends AppCompatActivity {
     ImageView chat_create_channels_back_button;
-    EditText groupNameEditText ;
+    EditText groupNameEditText;
 
     final String TAG = "Error";
     Button createGroupButton;

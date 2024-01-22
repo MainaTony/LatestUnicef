@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                                 mediaWatch.setDate(jsonMediaWatch.getString("date"));
                                 mediaWatch.setSummary(jsonMediaWatch.getString("summary"));
                                 mediaWatch.setTonality(jsonMediaWatch.getString("tonality"));
+                                mediaWatch.setStoryurl(jsonMediaWatch.getString("storyurl"));
+
                                 mediaWatchList.add(mediaWatch);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -319,6 +321,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                 jsonMediaWatch.put("category", mediaWatch.getCategory());
                 jsonMediaWatch.put("tonality", mediaWatch.getTonality());
                 jsonMediaWatch.put("mediatype", mediaWatch.getMediatype());
+                jsonMediaWatch.put("storyurl", mediaWatch.getStoryurl());
                 jsonArray.put(jsonMediaWatch);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -365,6 +368,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
         intent.putExtra("title", mediaWatch.getTitle());
         intent.putExtra("category", mediaWatch.getCategory());
         intent.putExtra("summary", mediaWatch.getSummary());
+        intent.putExtra("storyurl", mediaWatch.getStoryurl());
 
         startActivity(intent);
 //        String dateToday = mediaWatch.getDate();

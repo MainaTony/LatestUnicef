@@ -6,324 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".NewsActivity">
 
-<androidx.cardview.widget.CardView
-    android:id="@+id/newsScreenFirstLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:cardCornerRadius="6dp"
-    android:layout_margin="12dp"
-    >
-
-<!--<RelativeLayout-->
-<!--    android:id="@+id/relativeLayoutBackground"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="300dp">-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView7"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:srcCompat="@drawable/logounicef" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/news_activity_title"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_above="@+id/Trending"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:layout_marginLeft="12dp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_marginRight="12dp"-->
-<!--        android:text="News Title"-->
-<!--        android:textSize="18sp"-->
-<!--        />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/Trending"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text=" Trending - 6 hours ago    "-->
-<!--        android:gravity="bottom"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:layout_marginLeft="12dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:textSize="15sp"-->
-<!--        />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/news_activity_category"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text=" Health"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:gravity="bottom"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginRight="12dp"-->
-<!--        android:layout_toEndOf="@+id/Trending"-->
-<!--        android:textSize="18sp"-->
-<!--        />-->
-
-
-<!--</RelativeLayout>-->
-
-
-    <LinearLayout
-        android:id="@+id/relativeLayoutBackground"
+    <ScrollView
+        android:id="@+id/newsActivityVerticalScrollView"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:srcCompat="@drawable/logounicef" />
-
-        <TextView
-            android:id="@+id/news_activity_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginLeft="12dp"
-            android:textStyle="bold"
-            android:layout_marginRight="12dp"
-            android:text="News Title"
-            android:textSize="18sp"
-            />
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/Trending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Trending - 6 hours ago    "
-                android:gravity="bottom"
-                android:textColor="@color/black"
-                android:layout_marginLeft="12dp"
-                android:layout_alignParentBottom="true"
-                android:textSize="15sp"
-                />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-            <TextView
-                android:id="@+id/news_activity_category"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/newsScreenFirstLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:cardCornerRadius="6dp"
+                android:layout_margin="12dp"
+                >
+
+
+                <LinearLayout
+                    android:id="@+id/relativeLayoutBackground"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        app:srcCompat="@drawable/logounicef" />
+
+                    <TextView
+                        android:id="@+id/news_activity_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="12dp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="12dp"
+                        android:text="News Title"
+                        android:textSize="18sp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/Trending"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" Trending - 6 hours ago    "
+                            android:gravity="bottom"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="12dp"
+                            android:layout_alignParentBottom="true"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/news_activity_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" Health"
+                            android:textColor="@color/black"
+                            android:gravity="bottom"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginRight="12dp"
+                            android:layout_toEndOf="@+id/Trending"
+                            android:textSize="18sp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/news_summary_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="#ECECEC"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="6dp"
+                android:layout_below="@+id/newsScreenFirstLayout"
+                tools:layout_editor_absoluteX="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_news_activity_company_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="50dp">
+
+                        <ImageView
+                            android:id="@+id/news_activity_company_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/newslogo" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toEndOf="@+id/card_view_news_activity_company_image"
+                        android:layout_marginLeft="6dp"
+                        android:text="Daily Monitor"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/news_activity_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/card_view_news_activity_company_image"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/storyUrl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:textColor="@color/brand_color"
+                        android:text=" "
+                        android:layout_gravity="center_horizontal"
+                        android:layout_below="@+id/news_activity_summary"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <Button
+                android:id="@+id/downloadStory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Health"
-                android:textColor="@color/black"
-                android:gravity="bottom"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="12dp"
-                android:layout_toEndOf="@+id/Trending"
-                android:textSize="18sp"
+                android:text="Download Story"
+                app:backgroundTint="@color/brand_color"
+                android:textSize="14sp"
+                android:layout_gravity="center_horizontal"
                 />
 
         </LinearLayout>
 
 
 
+    </ScrollView>
 
-    </LinearLayout>
-
-<!--    <RelativeLayout-->
-<!--        android:layout_width="wrap_content"-->
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/relativeLayoutBackground"-->
-<!--        >-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/news_activity_title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_above="@+id/Trending"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:layout_marginLeft="12dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:layout_marginRight="12dp"-->
-<!--            android:text="News Title"-->
-<!--            android:textSize="18sp"-->
-<!--            />-->
-
-<!--    </RelativeLayout>-->
-
-</androidx.cardview.widget.CardView>
-
-
-    <!--    <LinearLayout-->
-<!--        android:id="@+id/newsScreenFirstLayout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@drawable/newsactivity"-->
-<!--            android:orientation="vertical">-->
-<!--            <TextView-->
-<!--                android:id="@+id/news_activity_title"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="24sp"-->
-<!--                android:text="Cholera kills 8 in Kayunga district" />-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-<!--                <TextView-->
-<!--                    android:id="@+id/textView16"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:text="Trending" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView17"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:text=" - "/>-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView18"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:text="6 hours ago"/>-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView19"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:text=" HEALTH"/>-->
-<!--            </LinearLayout>-->
-
-
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/newsScreenSecondLayout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/newsScreenFirstLayout"-->
 <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        >-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
-<!--            <ImageView-->
-<!--                android:id="@+id/imageView7"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:srcCompat="@drawable/newslogo" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/news_activity_category"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="12sp"-->
-<!--                android:text="Daily Monitor"/>-->
-
-<!--        </LinearLayout>-->
-<!--        <TextView-->
-<!--            android:id="@+id/news_activity_summary"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="12sp" />-->
-<!--&lt;!&ndash;            android:text="Dr Ahmed Matovu, the district health officer, yesterday said all the deaths have been registered in Busaana Sub-county, with the last fatality registered on Friday in &ndash;&gt;-->
-<!--&lt;!&ndash;            Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile Matovu, the district health officer, yesterday said all the deaths have been &ndash;&gt;-->
-<!--&lt;!&ndash;            registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile Dr Ahmed Matovu, the district health officer, &ndash;&gt;-->
-<!--&lt;!&ndash;            yesterday said all the deaths have been registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile Ahmed Matovu, the district health officer, yesterday said all the deaths have been &ndash;&gt;-->
-<!--&lt;!&ndash;            registered in Busaana Sub-county, with the last fatality registered on Friday in Bisakabidugala where pit latrine coverage is reported at below 50 percent yet it is located near River Nile"/>&ndash;&gt;-->
-
-<!--    </LinearLayout>-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/news_summary_card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:cardBackgroundColor="#ECECEC"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/newsScreenFirstLayout"
-        tools:layout_editor_absoluteX="12dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_news_activity_company_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="50dp">
-
-                <ImageView
-                    android:id="@+id/news_activity_company_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/newslogo" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/card_view_news_activity_company_image"
-                android:layout_marginLeft="6dp"
-                android:text="Daily Monitor"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/news_activity_summary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_view_news_activity_company_image"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/downloadStory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Download Story"
-        app:backgroundTint="@color/brand_color"
-        android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/news_summary_card_view" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/menu"/>
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:menu="@menu/menu"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,8 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
     @Override
     public int getItemCount() {
 //        return projects.length;
-        return mediaWatch.length;
+        return mediaWatch != null ? mediaWatch.length : 0;
+//        return mediaWatch.length;
     }
     @NonNull
     @Override
@@ -70,6 +71,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
             date = itemView.findViewById(R.id.newsDate);
             category = itemView.findViewById(R.id.category);
             url = itemView.findViewById(R.id.url);
+
             this.onItemClickListener = onItemClickListener;
 
             itemView.setOnClickListener(this);
