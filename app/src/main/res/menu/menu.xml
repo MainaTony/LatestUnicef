@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/news"
-        android:title="Discover"
+        android:title="News"
         android:icon="@drawable/news2"
         app:itemIconTint="@color/brand_color"
         app:itemTextColor="@color/brand_color"/>
@@ -25,6 +25,13 @@
     <item
         android:id="@+id/download"
         android:title="Download"
+        android:icon="@drawable/download"
+        app:itemIconTint="@color/brand_color"
+        app:itemTextColor="@color/brand_color"/>
+
+    <item
+        android:id="@+id/analytics"
+        android:title="Analytics"
         android:icon="@drawable/download"
         app:itemIconTint="@color/brand_color"
         app:itemTextColor="@color/brand_color"/>

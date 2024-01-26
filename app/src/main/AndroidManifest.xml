@@ -6,17 +6,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-<!--    <network-security-config>-->
-<!--        <base-config android:cleartextTrafficPermitted="true">-->
-<!--            <trust-anchors>-->
-<!--                &lt;!&ndash; Trust all certificates (for testing purposes) &ndash;&gt;-->
-<!--                <certificates android:src="system" />-->
-<!--            </trust-anchors>-->
-<!--        </base-config>-->
-<!--    </network-security-config>-->
-
-
-
     <application
         android:name=".Utils.MyApplication"
         android:allowBackup="true"
@@ -26,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MediaWatch"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Analytics"
+            android:exported="false" />
         <activity
             android:name=".GroupChat"
             android:exported="false" />

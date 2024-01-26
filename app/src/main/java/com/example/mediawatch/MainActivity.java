@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -103,14 +104,23 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                 case R.id.chat:
 
 //                    Intent chatIntent = new Intent(MainActivity.this, ChatHome.class);
-                    Intent chatIntent = new Intent(MainActivity.this, ChatOneOnOne.class);
-//                    intent.putExtra("title", mediaWatch.getTitle());
-//                    intent.putExtra("category", mediaWatch.getCategory());
-//                    intent.putExtra("summary", mediaWatch.getSummary());
-                    startActivity(chatIntent);
+//                    Intent chatIntent = new Intent(MainActivity.this, ChatOneOnOne.class);
+////                    intent.putExtra("title", mediaWatch.getTitle());
+////                    intent.putExtra("category", mediaWatch.getCategory());
+////                    intent.putExtra("summary", mediaWatch.getSummary());
+//                    startActivity(chatIntent);
 
 //                    Intent allChannelsIntent = new Intent(MainActivity.this, ChatAllChannels.class);
 //                    startActivity(allChannelsIntent);
+
+//                    Communication to slack
+                    Uri slackAppUri = Uri.parse("slack://");
+
+                    // Create an Intent with the VIEW action and the Slack URI
+                    Intent slackintent = new Intent(Intent.ACTION_VIEW, slackAppUri);
+
+                    // Start the activity
+                    startActivity(slackintent);
 
                     break;
                 case R.id.download:
@@ -122,6 +132,10 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 //                    intent.putExtra("summary", mediaWatch.getSummary());
                     startActivity(download);
                     break;
+
+                case R.id.analytics:
+                    Intent analytics = new Intent(MainActivity.this, Analytics.class);
+                    startActivity(analytics);
             }
             return false;
         });

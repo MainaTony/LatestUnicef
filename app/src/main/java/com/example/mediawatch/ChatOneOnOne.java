@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -155,9 +157,52 @@ public class ChatOneOnOne extends AppCompatActivity {
         chat_room_add_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChatOneOnOne.this, ChatCreateChannel.class);
+
+//                Intent intent = new Intent(ChatOneOnOne.this, ChatCreateChannel.class);
+//                startActivity(intent);
+//                finish();
+
+                // Check if the Slack app is installed on the device
+//                PackageManager packageManager = getPackageManager();
+//                Intent slackIntent = packageManager.getLaunchIntentForPackage("com.Slack");
+//                if(slackIntent!= null){
+//                    Uri slackUri = Uri.parse("slack://open");
+//
+//                    // Create an implicit intent
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, slackUri);
+//                    // Start the activity
+//                    startActivity(intent);
+//                } else {
+//                    // Redirect the user to the Play Store to install Slack
+//                    Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
+//                    playStoreIntent.setData(Uri.parse("market://details?id=com.Slack"));
+//
+//                    // Start the activity
+//                    startActivity(playStoreIntent);
+//                }
+
+                // Replace "YOUR_SLACK_WEB_URL" with the actual URL of the Slack web portal
+//                String slackWebUrl = "https://slack.com/get-started#/createnew";
+//
+//                // Create an Intent with the ACTION_VIEW action
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//
+//                // Set the data (URL) for the Intent
+//                intent.setData(Uri.parse(slackWebUrl));
+//
+//                // Start the activity
+//                startActivity(intent);
+
+                // URI for the Slack app
+                Uri slackAppUri = Uri.parse("slack://");
+
+                // Create an Intent with the VIEW action and the Slack URI
+                Intent intent = new Intent(Intent.ACTION_VIEW, slackAppUri);
+
+                // Start the activity
                 startActivity(intent);
-                finish();
+
+
             }
         });
 
