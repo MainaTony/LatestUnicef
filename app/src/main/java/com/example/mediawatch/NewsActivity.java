@@ -3,11 +3,13 @@ package com.example.mediawatch;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,8 @@ public class NewsActivity extends AppCompatActivity {
     TextView news_activity_summary;
     Button downloadStory;
 
+    ImageButton shareNewsButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,7 @@ public class NewsActivity extends AppCompatActivity {
 
         newsActivityVerticalScrollView = findViewById(R.id.newsActivityVerticalScrollView);
 
+        shareNewsButton = findViewById(R.id.shareNewsButton);
 
         news_activity_title = findViewById(R.id.news_activity_title);
         news_activity_category = findViewById(R.id.news_activity_category);
@@ -74,6 +79,51 @@ public class NewsActivity extends AppCompatActivity {
                     String url = storyurl;
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
+                }
+                else {
+//                    storyUrl.setText("story url not available");
+                    Toast.makeText(NewsActivity.this, "Story url not available", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        shareNewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!storyurl.isEmpty()){
+                    String url = storyurl;
+
+                    // Check if the Slack app is installed on the device
+                    PackageManager packageManager = getPackageManager();
+                    Intent slackIntent = packageManager.getLaunchIntentForPackage("com.Slack");
+                    if(slackIntent!= null){
+                        Uri slackUri = Uri.parse("slack://open");
+
+                        // Create an implicit intent
+                        Intent intent = new Intent(Intent.ACTION_VIEW, slackUri);
+                        // Start the activity
+                        startActivity(intent);
+
+
+
+                    } else {
+                        // Redirect the user to the Play Store to install Slack
+                        Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
+                        playStoreIntent.setData(Uri.parse("market://details?id=com.Slack"));
+
+                        // Start the activity
+                        startActivity(playStoreIntent);
+                    }
+
+
+//                    Intent intent = new Intent(Intent.ACTION_SEND);
+//                    intent.putExtra(Intent.EXTRA_TEXT, "Hello Developers");
+//                    intent.setType("text/plain");
+//                    startActivity(intent);
+//                    if(intent.resolveActivity(getPackageManager()) != null){
+//                        startActivity(intent);
+//                    }
                 }
                 else {
 //                    storyUrl.setText("story url not available");

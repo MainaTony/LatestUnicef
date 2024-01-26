@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                                 mediaWatch.setSummary(jsonMediaWatch.getString("summary"));
                                 mediaWatch.setTonality(jsonMediaWatch.getString("tonality"));
                                 mediaWatch.setStoryurl(jsonMediaWatch.getString("storyurl"));
-
+                                mediaWatch.setFileurl(jsonMediaWatch.getString("fileurl"));
                                 mediaWatchList.add(mediaWatch);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -322,6 +322,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                 jsonMediaWatch.put("tonality", mediaWatch.getTonality());
                 jsonMediaWatch.put("mediatype", mediaWatch.getMediatype());
                 jsonMediaWatch.put("storyurl", mediaWatch.getStoryurl());
+                jsonMediaWatch.put("fileurl", mediaWatch.getFileurl());
                 jsonArray.put(jsonMediaWatch);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -351,6 +352,7 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                     mediaWatch.setStoryurl(jsonMediaWatch.getString("storyurl"));
                     mediaWatch.setTonality(jsonMediaWatch.getString("tonality"));
                     mediaWatch.setMediatype(jsonMediaWatch.getString("mediatype"));
+                    mediaWatch.setFileurl(jsonMediaWatch.getString("fileurl"));
                     mediaWatchArray[i] = mediaWatch;
                 }
                 return mediaWatchArray;

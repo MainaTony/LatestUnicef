@@ -10,5 +10,6 @@
     <color name="brand_color">#29AAE2</color>
     <color name="text_color">#2E2D2D</color>
     <color name="transparent">#00000000</color>
+    <color name="discover_items">#808080</color>
 
 </resources>

@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/home2" />
+        android:icon="@drawable/home2"
+        app:itemIconTint="@color/brand_color"
+        app:itemTextColor="@color/brand_color"/>
 
     <item
         android:id="@+id/news"
-        android:title="Home"
-        android:icon="@drawable/news2" />
+        android:title="Discover"
+        android:icon="@drawable/news2"
+        app:itemIconTint="@color/brand_color"
+        app:itemTextColor="@color/brand_color"/>
 
     <item
         android:id="@+id/chat"
         android:title="Chat"
-        android:icon="@drawable/chat2" />
+        android:icon="@drawable/chat2"
+        app:itemIconTint="@color/brand_color"
+        app:itemTextColor="@color/brand_color"/>
 
     <item
         android:id="@+id/download"
         android:title="Download"
-        android:icon="@drawable/download" />
+        android:icon="@drawable/download"
+        app:itemIconTint="@color/brand_color"
+        app:itemTextColor="@color/brand_color"/>
 
 </menu>

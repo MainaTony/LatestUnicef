@@ -9,6 +9,16 @@ public class MediaWatch {
     String tonality;
     String mediatype;
 
+    String fileurl;
+
+    public String getFileurl() {
+        return fileurl;
+    }
+
+    public void setFileurl(String fileurl) {
+        this.fileurl = fileurl;
+    }
+
     public String getMediatype() {
         return mediatype;
     }
@@ -36,7 +46,7 @@ public class MediaWatch {
         this.summary = summary;
     }
 
-    public MediaWatch(String title, String date, String category, String storyurl, String summary, String tonality, String mediatype) {
+    public MediaWatch(String title, String date, String category, String storyurl, String summary, String tonality, String mediatype, String fileurl) {
         this.title = title;
         this.date = date;
         this.category = category;
@@ -44,6 +54,8 @@ public class MediaWatch {
         this.summary = summary;
         this.tonality = tonality;
         this.mediatype = mediatype;
+        this.fileurl = fileurl;
+
     }
 
     public String getTitle() {
