@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/unicef_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unicef Online Media"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/child_protection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Child Protection"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/child_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Child Health"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/unicef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unicef"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/child_education"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Child Education"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <TextView
+        android:id="@+id/others"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Others"
+        android:backgroundTint="@color/white"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground" />
+
+</LinearLayout>

@@ -7,331 +7,497 @@
     tools:context=".Discover">
 
     <LinearLayout
-        android:id="@+id/searchLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="left"
-        android:layout_margin="6dp"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
         app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/headingsLayout">
+        app:layout_constraintBottom_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/mainRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-        <ImageView
-            android:id="@+id/discoverImageViewBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"
-            android:padding="5dp"
-            app:srcCompat="@drawable/back"
-            tools:ignore="VectorDrawableCompat" />
+            <LinearLayout
+                android:id="@+id/searchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_margin="4dp">
 
-        <ImageView
-            android:id="@+id/imageView5"
+                <ImageView
+                    android:id="@+id/discoverImageViewBack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/back"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <!--        app:srcCompat="@drawable/search"-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/headingsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="8dp"
+                android:layout_below="@+id/searchLayout"
+                >
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Discover"/>
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Unicef News" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/thematicAreasLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/headingsLayout">
+
+
+                <!-- Left Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <!-- Add your views for the left section here -->
+                    <TextView
+                        android:id="@+id/thematicAreas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_margin="8dp"
+                        android:text="Thematic Areas"/>
+
+                </LinearLayout>
+
+                <!-- Right Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <!-- Add your views for the right section here -->
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/thematicAreas"
+
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mediaTypeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/thematicAreasLayout">
+
+                <!-- Left Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <!-- Add your views for the left section here -->
+                    <TextView
+                        android:id="@+id/mediaType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_margin="8dp"
+                        android:text="Media Type"/>
+
+                </LinearLayout>
+
+                <!-- Right Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <!-- Add your views for the right section here -->
+                    <Spinner
+                        android:id="@+id/mediaTypeSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/thematicAreas"
+
+                        />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tonalityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/mediaTypeLayout">
+
+                <!-- Left Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <!-- Add your views for the left section here -->
+                    <TextView
+                        android:id="@+id/tonalitySpinnerLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_margin="8dp"
+                        android:text="Tonality"
+                        />
+
+                </LinearLayout>
+
+                <!-- Right Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <!-- Add your views for the right section here -->
+                    <Spinner
+                        android:id="@+id/tonalitySpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tonalitySpinnerLayout"
+                        />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/verticalTitleDiscoverNewsRecycler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
-<!--        app:srcCompat="@drawable/search"-->
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainRelativeLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/headingsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/searchLayout"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/titleHorizontalScrollView">
-
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="Discover"/>
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="Unicef News" />
-
-    </LinearLayout>
 
 
-    <HorizontalScrollView
-        android:id="@+id/titleHorizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/headingsLayout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/mediaHorizontalScrollView"
-        android:layout_margin="6dp"
-        >
 
-        <!-- Add your horizontally scrollable content here -->
-        <LinearLayout
-            android:id="@+id/thematicLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <!-- Add your content items here -->
 
-                <TextView
-                    android:id="@+id/discover_category_unicef_online_media"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:textColor="#808080"
-                    android:text="UNICEF ONLINE MEDIA"
-                    android:textSize="20sp" />
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/titleHorizontalScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tonalityLayout"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/mediaHorizontalScrollView"-->
+<!--        android:layout_margin="6dp"-->
+<!--        >-->
 
-                <TextView
-                    android:id="@+id/discover_category_governance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:textColor="#808080"
-                    android:text="GOVERNANCE"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="20sp" />
+<!--        &lt;!&ndash; Add your horizontally scrollable content here &ndash;&gt;-->
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/thematicLinearLayout"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:orientation="horizontal">&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/discover_category_child_protection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:textColor="#808080"
-                    android:text="CHILD PROTECTION"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="20sp" />
+<!--&lt;!&ndash;            &lt;!&ndash; Add your content items here &ndash;&gt;&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/discover_category_child_health"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:textColor="#808080"
-                    android:text="CHILD HEALTH"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="20sp"
-                    />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_unicef_online_media"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="UNICEF ONLINE MEDIA"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp" />&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/discover_category_unicef"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:textColor="#808080"
-                    android:text="UNICEF"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="20sp"
-                    />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_governance"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="GOVERNANCE"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp" />&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/discover_category_child_education"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
-                    android:textColor="#808080"
-                    android:text="CHILD EDUCATION"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="20sp"
-                    />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_child_protection"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="CHILD PROTECTION"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp" />&ndash;&gt;-->
 
-                <TextView
-                    android:id="@+id/discover_category_others"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#808080"
-                    android:text="OTHERS"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="20sp"
-                    />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_child_health"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="CHILD HEALTH"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    />&ndash;&gt;-->
 
-            <!-- Add more items as needed -->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_unicef"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="UNICEF"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    />&ndash;&gt;-->
 
-        </LinearLayout>
-    </HorizontalScrollView>
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_child_education"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="CHILD EDUCATION"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    />&ndash;&gt;-->
 
-    <HorizontalScrollView
-        android:id="@+id/mediaHorizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/titleHorizontalScrollView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/titleHorizontalScrollView"
-        android:layout_margin="6dp"
-        >
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/discover_category_others"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="OTHERS"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    />&ndash;&gt;-->
 
-        <!-- Add your horizontally scrollable content here -->
-        <LinearLayout
-            android:id="@+id/mediaLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+<!--&lt;!&ndash;            &lt;!&ndash; Add more items as needed &ndash;&gt;&ndash;&gt;-->
 
-            <!-- Add your content items here -->
-            <TextView
-                android:id="@+id/discover_media_type_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:layout_marginLeft="16dp"
-                android:textSize="20sp" />
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--    </HorizontalScrollView>-->
 
-            <TextView
-                android:id="@+id/discover_online_media"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Online Media"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/mediaHorizontalScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/titleHorizontalScrollView"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tonalityHorizontalScrollView"-->
+<!--        android:layout_margin="6dp"-->
+<!--        >-->
 
-            <TextView
-                android:id="@+id/discover_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Radio"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--        &lt;!&ndash; Add your horizontally scrollable content here &ndash;&gt;-->
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/mediaLayout"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:orientation="horizontal">&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/discover_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Tv"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--&lt;!&ndash;            &lt;!&ndash; Add your content items here &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_media_type_all"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="All"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp" />&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/discover_print_media"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Print Media"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_online_media"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Online Media"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
 
-            <!-- Add more items as needed -->
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_radio"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Radio"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
 
-        </LinearLayout>
-    </HorizontalScrollView>
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_tv"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Tv"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
 
-    <HorizontalScrollView
-        android:id="@+id/tonalityHorizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/mediaHorizontalScrollView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/verticalTitleDiscoverNewsRecycler"
-        android:layout_margin="6dp"
-        >
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_print_media"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Print Media"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
 
-        <!-- Add your horizontally scrollable content here -->
-        <LinearLayout
-            android:id="@+id/tonalityLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+<!--&lt;!&ndash;            &lt;!&ndash; Add more items as needed &ndash;&gt;&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/discover_tonality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tonality"
-                android:layout_marginLeft="16dp"
-                android:textStyle="bold"
-                android:textSize="15sp" />
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--    </HorizontalScrollView>-->
 
-            <!-- Add your content items here -->
-            <TextView
-                android:id="@+id/discover_tonality_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:layout_marginLeft="16dp"
-                android:textSize="20sp" />
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/tonalityHorizontalScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/mediaHorizontalScrollView"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/verticalTitleDiscoverNewsRecycler"-->
+<!--        android:layout_margin="6dp"-->
+<!--        >-->
 
-            <TextView
-                android:id="@+id/discover_tonality_positive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Positive"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--        &lt;!&ndash; Add your horizontally scrollable content here &ndash;&gt;-->
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/tonalityLinearLayout"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:orientation="horizontal">&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/discover_tonality_neutral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Neutral"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_tonality"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Tonality"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="15sp" />&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/discover_tonality_negative"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="Negative"
-                android:background="@drawable/rounded_background"
-                android:textColor="#808080"
-                android:textSize="20sp"
-                />
+<!--&lt;!&ndash;            &lt;!&ndash; Add your content items here &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_tonality_all"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="All"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp" />&ndash;&gt;-->
 
-        </LinearLayout>
-    </HorizontalScrollView>
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_tonality_positive"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Positive"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/verticalTitleDiscoverNewsRecycler"
-        android:layout_width="wrap_content"
-        android:layout_height="600dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tonalityHorizontalScrollView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-    </androidx.recyclerview.widget.RecyclerView>
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_tonality_neutral"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Neutral"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/discover_tonality_negative"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginLeft="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Negative"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/rounded_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#808080"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--    </HorizontalScrollView>-->
+
+
 
 
 

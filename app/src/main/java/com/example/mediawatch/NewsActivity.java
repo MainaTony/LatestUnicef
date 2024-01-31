@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,8 @@ public class NewsActivity extends AppCompatActivity {
 
     ImageButton shareNewsButton;
 
+    ImageView newsViewBackImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,16 @@ public class NewsActivity extends AppCompatActivity {
         newsActivityVerticalScrollView = findViewById(R.id.newsActivityVerticalScrollView);
 
         shareNewsButton = findViewById(R.id.shareNewsButton);
+        newsViewBackImageView = findViewById(R.id.newsViewBackImageView);
+
+        newsViewBackImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NewsActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         news_activity_title = findViewById(R.id.news_activity_title);
         news_activity_category = findViewById(R.id.news_activity_category);
@@ -95,26 +108,26 @@ public class NewsActivity extends AppCompatActivity {
                     String url = storyurl;
 
                     // Check if the Slack app is installed on the device
-                    PackageManager packageManager = getPackageManager();
-                    Intent slackIntent = packageManager.getLaunchIntentForPackage("com.Slack");
-                    if(slackIntent!= null){
-                        Uri slackUri = Uri.parse("slack://open");
-
-                        // Create an implicit intent
-                        Intent intent = new Intent(Intent.ACTION_VIEW, slackUri);
-                        // Start the activity
-                        startActivity(intent);
-
-
-
-                    } else {
-                        // Redirect the user to the Play Store to install Slack
-                        Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
-                        playStoreIntent.setData(Uri.parse("market://details?id=com.Slack"));
-
-                        // Start the activity
-                        startActivity(playStoreIntent);
-                    }
+//                    PackageManager packageManager = getPackageManager();
+//                    Intent slackIntent = packageManager.getLaunchIntentForPackage("com.Slack");
+//                    if(slackIntent!= null){
+//                        Uri slackUri = Uri.parse("slack://open");
+//
+//                        // Create an implicit intent
+//                        Intent intent = new Intent(Intent.ACTION_VIEW, slackUri);
+//                        // Start the activity
+//                        startActivity(intent);
+//
+//
+//
+//                    } else {
+//                        // Redirect the user to the Play Store to install Slack
+//                        Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
+//                        playStoreIntent.setData(Uri.parse("market://details?id=com.Slack"));
+//
+//                        // Start the activity
+//                        startActivity(playStoreIntent);
+//                    }
 
 
 //                    Intent intent = new Intent(Intent.ACTION_SEND);
@@ -124,6 +137,8 @@ public class NewsActivity extends AppCompatActivity {
 //                    if(intent.resolveActivity(getPackageManager()) != null){
 //                        startActivity(intent);
 //                    }
+
+                    shareViaEmail(title, url);
                 }
                 else {
 //                    storyUrl.setText("story url not available");
@@ -201,7 +216,20 @@ public class NewsActivity extends AppCompatActivity {
 //    }
 
 
+    private void shareViaEmail(String subject, String content) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, content);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{""}); // Add email recipients if needed
+        emailIntent.setPackage("com.google.android.gm");
 
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Choose an Email client"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Handle case where no email app is available
+        }
+    }
 
 }
 

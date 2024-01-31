@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 //import cn.pedant.SweetAlert.SweetAlertDialog;SweetAlertDialog
@@ -57,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
     private static final String KEY_ITEM = "key_item";
 
     MediaWatch mediaWatch;
+
+    private static final long INACTIVITY_TIMEOUT = 1 * 60 * 1000; // 3 minutes in milliseconds
+    private Handler inactivityHandler;
+    private Runnable inactivityRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,8 +146,36 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
             return false;
         });
 
+//        inactivityHandler = new Handler();
+//        inactivityRunnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                logout();
+//            }
+//        };
+//
+//        resetInactivityTimer();
+
 
     }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        resetInactivityTimer();
+//        return super.dispatchTouchEvent(ev);
+//    }
+//
+//    private void resetInactivityTimer() {
+//        inactivityHandler.removeCallbacks(inactivityRunnable);
+//        inactivityHandler.postDelayed(inactivityRunnable, INACTIVITY_TIMEOUT);
+//    }
+//
+//    private void logout() {
+//        // Implement your logout logic here, e.g., navigate to the login screen
+//        Intent intent = new Intent(this, LoginMain.class);
+//        startActivity(intent);
+//        finish(); // Finish the current activity to prevent the user from going back to it
+//    }
 
 //    BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 

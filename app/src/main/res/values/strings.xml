@@ -34,5 +34,38 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="thematic_areas">
+        <item>Unicef Online Media</item>
+        <item>Child Protection</item>
+        <item>Child Health</item>
+        <item>Unicef</item>
+        <item>Child Education</item>
+        <item>Others</item>
+        <!-- Add more items as needed -->
+    </string-array>
+
+    <string-array name="media_type">
+        <item>Online Media</item>
+        <item>Print Media</item>
+        <item>Radio</item>
+        <item>Tv</item>
+        <item>All</item>
+        <!-- Add more items as needed -->
+    </string-array>
+
+    <string-array name="tonality">
+        <item>Positive</item>
+        <item>Neutral</item>
+        <item>Negative</item>
+        <item>All</item>
+        <!-- Add more items as needed -->
+    </string-array>
+
+    <!-- Define a style for the Spinner text -->
+    <style name="SpinnerTextStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">18sp</item>
+        <!-- Add other text appearance attributes if needed -->
+    </style>
+
 
 </resources>
