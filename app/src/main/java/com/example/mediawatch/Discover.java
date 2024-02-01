@@ -227,6 +227,8 @@ public class Discover extends AppCompatActivity  {
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.drop_down_item);
+
+//        adapter.insert("Theme", 0);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 

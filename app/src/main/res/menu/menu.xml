@@ -4,7 +4,7 @@
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/home2"
+        android:icon="@drawable/hemo"
         app:itemIconTint="@color/brand_color"
         app:itemTextColor="@color/brand_color"/>
 
@@ -18,21 +18,21 @@
     <item
         android:id="@+id/chat"
         android:title="Chat"
-        android:icon="@drawable/chat2"
+        android:icon="@drawable/chatt"
         app:itemIconTint="@color/brand_color"
         app:itemTextColor="@color/brand_color"/>
 
     <item
         android:id="@+id/download"
         android:title="Download"
-        android:icon="@drawable/download"
+        android:icon="@drawable/downlaod"
         app:itemIconTint="@color/brand_color"
         app:itemTextColor="@color/brand_color"/>
 
     <item
         android:id="@+id/analytics"
         android:title="Analytics"
-        android:icon="@drawable/download"
+        android:icon="@drawable/analytics"
         app:itemIconTint="@color/brand_color"
         app:itemTextColor="@color/brand_color"/>
 

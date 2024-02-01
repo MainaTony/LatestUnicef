@@ -45,6 +45,7 @@
     </string-array>
 
     <string-array name="media_type">
+        <item>Media</item>
         <item>Online Media</item>
         <item>Print Media</item>
         <item>Radio</item>

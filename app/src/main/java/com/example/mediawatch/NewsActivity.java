@@ -79,7 +79,9 @@ public class NewsActivity extends AppCompatActivity {
         news_activity_title.setText(title);
         news_activity_category.setText(category);
         news_activity_summary.setText(summary);
-        storyUrl.setText(storyurl);
+
+//        storyUrl.setText(storyurl);
+        storyUrl.setText("Read More");
 
         if(storyurl.isEmpty()){
             storyUrl.setText("story url not available");
