@@ -79,8 +79,9 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
             makeJsonArrayRequest();
             // To retrieve the stored MediaWatch array
             MediaWatch[] storedMediaWatchArray = getMediaWatchArray(MainActivity.this);
-            ProjectsAdapter adapter = new ProjectsAdapter(storedMediaWatchArray, this);
+            ProjectsAdapter adapter = new ProjectsAdapter(storedMediaWatchArray, MainActivity.this);
             newsFeed.setAdapter(adapter);
+
         } catch (Exception e){
             System.out.print("MyException:"+e.toString());
         }
@@ -204,6 +205,10 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
                                 mediaWatch.setStoryurl(jsonMediaWatch.getString("storyurl"));
                                 mediaWatch.setFileurl(jsonMediaWatch.getString("fileurl"));
                                 mediaWatchList.add(mediaWatch);
+
+
+
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
