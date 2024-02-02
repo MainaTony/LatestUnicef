@@ -67,6 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:textColor="@color/brand_color"
                         android:textStyle="bold"
                         android:text="Discover"/>
 
@@ -74,6 +75,7 @@
                         android:id="@+id/textView29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/brand_color"
                         android:textSize="14sp"
                         android:text="Unicef News" />
                 </LinearLayout>
@@ -99,6 +101,7 @@
                 android:id="@+id/thematicAreasLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 app:cardCornerRadius="10dp"
                 android:layout_margin="6dp"
                 app:cardElevation="3dp"
@@ -108,42 +111,19 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:background="@drawable/theme_background"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
-
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
-
-                        <!-- Left Section -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="0.2">
-
-                            <!-- Add your views for the left section here -->
-                            <TextView
-                                android:id="@+id/thematicAreas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="#808080"
-                                android:textSize="16sp"
-                                android:layout_margin="8dp"
-                                android:text="Theme"/>
-
-                        </LinearLayout>
-
-                        <!-- Right Section -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8">
-
-                            <!-- Add your views for the right section here -->
+                            android:layout_weight="3.3">
                             <Spinner
                                 android:id="@+id/spinner"
                                 android:layout_width="wrap_content"
@@ -152,107 +132,180 @@
                                 />
 
                         </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mediaTypeLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_below="@+id/thematicAreasLayout">
-
-                        <!-- Left Section -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="0.2">
+                            android:layout_weight="3.1">
 
-                            <!-- Add your views for the left section here -->
-                            <TextView
-                                android:id="@+id/mediaType"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="#808080"
-                                android:textSize="16sp"
-                                android:layout_margin="8dp"
-                                android:text="Media"/>
-
-                        </LinearLayout>
-
-                        <!-- Right Section -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8">
-
-                            <!-- Add your views for the right section here -->
                             <Spinner
                                 android:id="@+id/mediaTypeSpinner"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignLeft="@+id/thematicAreas"
-
                                 />
 
                         </LinearLayout>
-
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/tonalityLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_below="@+id/mediaTypeLayout">
-
-                        <!-- Left Section -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="0.2">
-
-                            <!-- Add your views for the left section here -->
-                            <TextView
-                                android:id="@+id/tonalitySpinnerLayout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="#808080"
-                                android:textSize="16sp"
-                                android:layout_margin="8dp"
-                                android:text="Tonality"
-                                />
-
-                        </LinearLayout>
-
-                        <!-- Right Section -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8">
-
-                            <!-- Add your views for the right section here -->
+                            android:layout_weight="3.5">
                             <Spinner
                                 android:id="@+id/tonalitySpinner"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_toRightOf="@+id/tonalitySpinnerLayout"
                                 />
-
                         </LinearLayout>
 
 
 
-
                     </LinearLayout>
+
+
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        >-->
+
+
+<!--                        &lt;!&ndash; Left Section &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_weight="0.2">-->
+
+<!--                            &lt;!&ndash; Add your views for the left section here &ndash;&gt;-->
+<!--                            <TextView-->
+<!--                                android:id="@+id/thematicAreas"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textColor="#808080"-->
+<!--                                android:textSize="16sp"-->
+<!--                                android:layout_margin="8dp"-->
+<!--                                android:text="Theme"/>-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        &lt;!&ndash; Right Section &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="0.8">-->
+
+<!--                            &lt;!&ndash; Add your views for the right section here &ndash;&gt;-->
+<!--                            <Spinner-->
+<!--                                android:id="@+id/spinner1"-->
+<!--                                android:layout_width="100dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignLeft="@+id/thematicAreas"-->
+<!--                                />-->
+
+<!--                        </LinearLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/mediaTypeLayout"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:layout_below="@+id/thematicAreasLayout">-->
+
+<!--                        &lt;!&ndash; Left Section &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_weight="0.2">-->
+
+<!--                            &lt;!&ndash; Add your views for the left section here &ndash;&gt;-->
+<!--                            <TextView-->
+<!--                                android:id="@+id/mediaType"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textColor="#808080"-->
+<!--                                android:textSize="16sp"-->
+<!--                                android:layout_margin="8dp"-->
+<!--                                android:text="Media"/>-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        &lt;!&ndash; Right Section &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="0.8">-->
+
+<!--                            &lt;!&ndash; Add your views for the right section here &ndash;&gt;-->
+<!--                            <Spinner-->
+<!--                                android:id="@+id/mediaTypeSpinner1"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignLeft="@+id/thematicAreas"-->
+
+<!--                                />-->
+
+<!--                        </LinearLayout>-->
+
+
+
+
+<!--                    </LinearLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/tonalityLayout"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:layout_below="@+id/mediaTypeLayout">-->
+
+<!--                        &lt;!&ndash; Left Section &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_weight="0.2">-->
+
+<!--                            &lt;!&ndash; Add your views for the left section here &ndash;&gt;-->
+<!--                            <TextView-->
+<!--                                android:id="@+id/tonalitySpinnerLayout"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center_vertical"-->
+<!--                                android:textColor="#808080"-->
+<!--                                android:textSize="16sp"-->
+<!--                                android:layout_margin="8dp"-->
+<!--                                android:text="Tonality"-->
+<!--                                />-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        &lt;!&ndash; Right Section &ndash;&gt;-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="0.8">-->
+
+<!--                            &lt;!&ndash; Add your views for the right section here &ndash;&gt;-->
+<!--                            <Spinner-->
+<!--                                android:id="@+id/tonalitySpinner1"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_toRightOf="@+id/tonalitySpinnerLayout"-->
+<!--                                />-->
+
+<!--                        </LinearLayout>-->
+
+
+
+
+<!--                    </LinearLayout>-->
 
                 </LinearLayout>
 

@@ -3,11 +3,10 @@
     android:id="@android:id/text1"
     style="?android:attr/spinnerDropDownItemStyle"
     android:singleLine="true"
-    android:layout_width="200dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:ellipsize="marquee"
-   >
+    android:textSize="14sp"
+    android:ellipsize="marquee">
 
 </CheckedTextView>
 

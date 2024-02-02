@@ -35,12 +35,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="thematic_areas">
+        <item>Theme</item>
         <item>Unicef Online Media</item>
         <item>Child Protection</item>
         <item>Child Health</item>
         <item>Unicef</item>
         <item>Child Education</item>
         <item>Others</item>
+
+<!--    <item>Unicef Online Media</item>
+        <item>Child Protection</item>
+        <item>Child Health</item>
+        <item>Unicef</item>
+        <item>Child Education</item>
+        <item>Others</item>-->
         <!-- Add more items as needed -->
     </string-array>
 
@@ -55,6 +63,7 @@
     </string-array>
 
     <string-array name="tonality">
+        <item>Tonality</item>
         <item>Positive</item>
         <item>Neutral</item>
         <item>Negative</item>
@@ -64,8 +73,9 @@
 
     <!-- Define a style for the Spinner text -->
     <style name="SpinnerTextStyle" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <!-- Add other text appearance attributes if needed -->
+
     </style>
 
 

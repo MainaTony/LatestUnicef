@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 //import cn.pedant.SweetAlert.SweetAlertDialog;SweetAlertDialog
 
@@ -64,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
     private Handler inactivityHandler;
     private Runnable inactivityRunnable;
 
+    ProgressBar recyclerProgress;
+
+    private static final String SLACK_PACKAGE_NAME = "com.Slack";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +81,14 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
         setContentView(binding.getRoot());
 
         newsFeed = findViewById(R.id.recycler_view_news_feed);
+//        recyclerProgress = findViewById(R.id.recyclerProgress);
+
         requestQueue = Volley.newRequestQueue(MainActivity.this);
+//        recyclerProgress.setVisibility(View.VISIBLE);
         try{
+
             makeJsonArrayRequest();
+//            recyclerProgress.setVisibility(View.INVISIBLE);
             // To retrieve the stored MediaWatch array
             MediaWatch[] storedMediaWatchArray = getMediaWatchArray(MainActivity.this);
             ProjectsAdapter adapter = new ProjectsAdapter(storedMediaWatchArray, MainActivity.this);
@@ -121,13 +133,32 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 //                    startActivity(allChannelsIntent);
 
 //                    Communication to slack
-                    Uri slackAppUri = Uri.parse("slack://");
+//                    Uri slackAppUri = Uri.parse("slack://");
+//
+//                    // Create an Intent with the VIEW action and the Slack URI
+//                    Intent slackintent = new Intent(Intent.ACTION_VIEW, slackAppUri);
+//
+//                    // Start the activity
+//                    startActivity(slackintent);
 
-                    // Create an Intent with the VIEW action and the Slack URI
-                    Intent slackintent = new Intent(Intent.ACTION_VIEW, slackAppUri);
 
-                    // Start the activity
-                    startActivity(slackintent);
+                    try {
+                        // Check if Slack is installed
+                        PackageManager packageManager = getPackageManager();
+                        packageManager.getPackageInfo(SLACK_PACKAGE_NAME, PackageManager.GET_ACTIVITIES);
+
+                        // If Slack is installed, launch it
+                        Intent launchIntent = packageManager.getLaunchIntentForPackage(SLACK_PACKAGE_NAME);
+                        if (launchIntent != null) {
+                            startActivity(launchIntent);
+                        } else {
+                            // Handle the case where Slack is installed but no launch intent is found
+                            showToast("Slack is installed, but it cannot be launched.");
+                        }
+                    } catch (PackageManager.NameNotFoundException e) {
+                        // If Slack is not installed, open the Play Store to download it
+                        openPlayStoreForSlack();
+                    }
 
                     break;
                 case R.id.download:
@@ -180,6 +211,24 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 
 //    BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+    private void openPlayStoreForSlack() {
+        try {
+            // Open the Play Store page for Slack
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + SLACK_PACKAGE_NAME));
+            startActivity(intent);
+        } catch (android.content.ActivityNotFoundException e) {
+            // If Play Store is not available, open Slack's website in a browser
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + SLACK_PACKAGE_NAME));
+            startActivity(intent);
+        }
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     private void makeJsonArrayRequest() {
         String url = "https://system.farsightmediawatch.com/index.php/Data_api/fetch_editorial_data";
 //        JsonObject jsonObject = new JsonObject();
@@ -193,6 +242,14 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 
                         // Convert the JSONArray to a list of MediaWatch
                         List<MediaWatch> mediaWatchList = new ArrayList<>();
+
+
+
+//                        MediaWatch[] unicef = mediaWatchList.toArray(new MediaWatch[0]);
+
+
+
+
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jsonMediaWatch = response.getJSONObject(i);
@@ -216,6 +273,11 @@ public class MainActivity extends AppCompatActivity implements ProjectsAdapter.O
 
                         // Convert the list to an array
                         MediaWatch[] mediaWatchArray = mediaWatchList.toArray(new MediaWatch[0]);
+
+//                        MediaWatch[] mediaTypes = new MediaWatch[response.length()];
+                        ProjectsAdapter adapter = new ProjectsAdapter(mediaWatchArray, MainActivity.this);
+                        newsFeed.setAdapter(adapter);
+
 
                         // Save the array in SharedPreferences
                         saveMediaWatchArray(MainActivity.this, mediaWatchArray);

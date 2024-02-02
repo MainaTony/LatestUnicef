@@ -294,7 +294,7 @@ public class Discover extends AppCompatActivity  {
 
 //                    Toast.makeText(Discover.this, "6", Toast.LENGTH_SHORT).show();
                 } else{
-                    Toast.makeText(Discover.this, "Null element", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Discover.this, "Null element", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -375,7 +375,7 @@ public class Discover extends AppCompatActivity  {
 
 //                    Toast.makeText(Discover.this, "5", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(Discover.this, "Null element", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Discover.this, "Null element", Toast.LENGTH_SHORT).show();
                 }
             }
 
